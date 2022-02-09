@@ -26,7 +26,7 @@ class AnnotatedMedia:
 class AnnotatedVideo(AnnotatedMedia):
     def __init__(self, filename, annotation, keyframes):
         self.keyframes = keyframes
-        super().__init__(annotation, media_filename)
+        super().__init__(filename, annotation)
 
 
 class AnnotatedImage(AnnotatedMedia):

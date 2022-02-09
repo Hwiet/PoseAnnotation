@@ -48,7 +48,7 @@ class PoseNetJoint(Joint):
 
 
     def __init__(self, confidence, name, cell, is_valid, position, id):
-        super().__init__(position)
+        super().__init__(position, id)
         self.cell = cell
         self.name = name
         self.confidence = confidence
