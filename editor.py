@@ -1,18 +1,14 @@
-from re import X
-import sys
-from turtle import xcor
-# from PyQt5.QtWidgets import *
 from PyQt5.QtWidgets import QWidget, QGraphicsView, QGraphicsScene, QGraphicsEllipseItem
 from PyQt5.QtMultimedia import QMediaPlayer
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
-from pose import Joint, PoseNetJoint
-from annotated_media import *
+from pose import Joint
+from annotated_media import AnnotatedVideo, AnnotatedImage
 from typing import List
 
 
 class PoseEditor():
-    def __init__(self, media: AnnotatedMedia):
+    def __init__(self, media):
         self.media = media
         self.widget = PoseWidget(media.filename, media.poses)
         self.widget.show()
