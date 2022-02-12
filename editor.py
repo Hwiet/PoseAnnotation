@@ -130,7 +130,8 @@ class PoseWidget(QGraphicsView):
         self.player.setVideoOutput(self.display)
         self.player.setMedia(QMediaContent(QUrl(file)))
 
-        self.player.play()
+        self.player.setPosition(0)
+        self.player.pause()
 
         # add joints
         point_size = 10
