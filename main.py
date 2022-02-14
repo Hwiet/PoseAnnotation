@@ -24,6 +24,8 @@ import cv2
 
 from PyQt5.QtCore import QObject
 
+from view import View
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -58,7 +60,7 @@ if __name__ == '__main__':
     for item in pose_view.items:
         scene.addItem(item)
 
-    view = QGraphicsView(scene)
+    view = View(scene)
 
     view.show()
 
