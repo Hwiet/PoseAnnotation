@@ -144,8 +144,14 @@ class PoseWidget(QGraphicsView):
 
         self.setScene(self.scene)
 
+<<<<<<< Updated upstream
     def resizeEvent(self, event):
         self.fitInView(QRectF(self.display.rect()))
+=======
+
+    # def resizeEvent(self, event):
+    #     self.fitInView(QRectF(self.display.rect()))
+>>>>>>> Stashed changes
      
 
 class JointWidget(QGraphicsEllipseItem):
