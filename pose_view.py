@@ -6,10 +6,6 @@ from PyQt5.QtCore import QPersistentModelIndex, Qt, pyqtSignal, QVariant
 
 
 class PoseView(QAbstractItemView):
-    toPrevFrame = pyqtSignal()
-    toNextFrame = pyqtSignal()
-
-
     def __init__(self):
         super().__init__()
 

@@ -18,6 +18,7 @@ from PyQt5.QtCore import QDir, QUrl
 
 from pose_model import PoseModel
 from pose_view import PoseView
+from mediaplayer import MediaPlayer
 
 import pandas as pd
 import cv2
@@ -45,10 +46,13 @@ if __name__ == '__main__':
     display = QGraphicsVideoItem()
 
     display.nativeSizeChanged.connect(lambda: display.setSize(display.nativeSize()))
+    
 
-    player = QMediaPlayer()
+    player = MediaPlayer()
     player.setVideoOutput(display)
-    player.setMedia(QMediaContent(QUrl('data/media/Golf Swing 0.mp4')))
+    player.setMedia('data/media/Golf Swing 0.mp4')
+
+
     player.setPosition(0)
     player.pause()
 
@@ -61,6 +65,9 @@ if __name__ == '__main__':
         scene.addItem(item)
 
     view = View(scene)
+
+    view.toPrevFrame.connect(lambda: player.setFrame(player.frame() - 1))
+    view.toNextFrame.connect(lambda: player.setFrame(player.frame() + 1))
 
     view.show()
 
