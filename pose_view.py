@@ -11,13 +11,17 @@ from PyQt5.QtCore import QPersistentModelIndex, Qt, pyqtSignal, pyqtSlot, QVaria
 
 
 class PoseView(QAbstractItemView):
+    _joint_delegate = JointGraphicsItem
+
+
     sceneItemsReady = pyqtSignal()
+    toPrevFrame = pyqtSignal()
+    toNextFrame = pyqtSignal()
 
 
     def __init__(self, video_file):
         super().__init__()
 
-        self._joint_delegate = JointGraphicsItem
         self._items = list()
 
         self.setViewport(GraphicsView(QGraphicsScene()))
@@ -31,14 +35,15 @@ class PoseView(QAbstractItemView):
         self._media_player.setPosition(0)
         self._media_player.pause()
 
+        self.viewport().scene().addItem(self._video_output)
 
-        self.viewport().show()
+
+        self.show()
 
 
         # signals
-        self.viewport().toPrevFrame.connect(self.showPreviousFrame)
-        self.viewport().toNextFrame.connect(self.showNextFrame)
-        self.sceneItemsReady.connect(self.setUpScene)
+        self.toPrevFrame.connect(self.showPreviousFrame)
+        self.toNextFrame.connect(self.showNextFrame)
 
 
     def initializeMediaPlayer(self, output, media):
@@ -68,7 +73,8 @@ class PoseView(QAbstractItemView):
                 position = self.model.data(jointIndex)
                 
                 jd = self._joint_delegate(j, *position)
-                self._item.append(jd)
+                self.viewport().scene().addItem(jd)
+                jd.posChanged.connect(jd)
 
 
     @property 
@@ -78,6 +84,34 @@ class PoseView(QAbstractItemView):
     
     def frame(self):
         self._media_player.frame()
+
+
+    def keyPressEvent(self, event):
+        key = event.key()
+        dz = 1.1
+
+
+        if key == Qt.Key_Left:
+            self.toPrevFrame.emit()
+
+
+        elif key == Qt.Key_Right:
+            self.toNextFrame.emit()
+
+
+        elif key == Qt.Key_0:
+            # return to normal zoom level
+            self.resetTransform()
+
+
+        elif key == Qt.Key_Minus:
+            # zoom out
+            self.scale(1/dz, 1/dz)
+
+
+        elif key == Qt.Key_Equal:
+            # zoom in
+            self.scale(dz, dz)
 
 
     @pyqtSlot()
@@ -95,12 +129,3 @@ class PoseView(QAbstractItemView):
         poseIndex = self.model.index(frame, 0)
         if not self.model.setData(jointIndex, [x, y]):
             print("Cannot update joint position", file=sys.stderr)
-
-    
-    @pyqtSlot()
-    def setUpScene(self):
-        self.viewport().scene().addItem(self._video_output)
-
-        for item in self._items:
-            self.viewport().scene().addItem(item)
-            item.posChanged.connect(self.updateJointPosition)
