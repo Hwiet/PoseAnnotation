@@ -15,7 +15,9 @@ class CustomFormat(Annotation):
         try:
             while True:
                 n = next(data)
-                if n != []:
+                if n == []:
+                    poses.append(None)
+                else:
                     poses.append(self.process_pose(n[0]))
         except StopIteration:
             return poses

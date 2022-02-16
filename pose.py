@@ -1,5 +1,5 @@
 from collections import namedtuple
-from typing import Dict
+from typing import Dict, List
 
 
 Edge = namedtuple("Edge", ['joint1', 'joint2'])
@@ -27,7 +27,7 @@ class Pose():
     joint_cls = Joint
 
 
-    def __init__(self, joints: Dict[str, joint_cls]):
+    def __init__(self, joints: List[joint_cls]):
         self.joints = joints
 
 

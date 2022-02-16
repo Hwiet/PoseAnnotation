@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QGraphicsView
 from PyQt5.QtCore import Qt, pyqtSignal
 
 
-class View(QGraphicsView):
+class GraphicsView(QGraphicsView):
     toPrevFrame = pyqtSignal()
     toNextFrame = pyqtSignal()
 
