@@ -25,8 +25,6 @@ import cv2
 
 from PyQt5.QtCore import QObject
 
-from view import View
-
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
@@ -39,37 +37,37 @@ if __name__ == '__main__':
 
     media = AnnotatedVideo('data/media/Golf Swing 0.mp4', CustomFormat('data/annotation/Golf Swing 0.txt'), keyframes)
 
-    pose_model = PoseModel(media.poses[0])
+    pose_model = PoseModel(media.poses)
 
-    scene = QGraphicsScene()
+    # scene = QGraphicsScene()
 
-    display = QGraphicsVideoItem()
+    # display = QGraphicsVideoItem()
 
-    display.nativeSizeChanged.connect(lambda: display.setSize(display.nativeSize()))
+    # display.nativeSizeChanged.connect(lambda: display.setSize(display.nativeSize()))
     
 
-    player = MediaPlayer()
-    player.setVideoOutput(display)
-    player.setMedia('data/media/Golf Swing 0.mp4')
+    # player = MediaPlayer()
+    # player.setVideoOutput(display)
+    # player.setMedia('data/media/Golf Swing 0.mp4')
 
 
-    player.setPosition(0)
-    player.pause()
+    # player.setPosition(0)
+    # player.pause()
 
-    scene.addItem(display)
+    # scene.addItem(display)
 
-    pose_view = PoseView()
+    pose_view = PoseView('data/media/Golf Swing 0.mp4')
     pose_view.setModel(pose_model)
 
-    for item in pose_view.items:
-        scene.addItem(item)
+    # for item in pose_view.items:
+    #     scene.addItem(item)
 
-    view = View(scene)
+    # view = View(scene)
 
-    view.toPrevFrame.connect(lambda: player.setFrame(player.frame() - 1))
-    view.toNextFrame.connect(lambda: player.setFrame(player.frame() + 1))
+    # view.toPrevFrame.connect(lambda: player.setFrame(player.frame() - 1))
+    # view.toNextFrame.connect(lambda: player.setFrame(player.frame() + 1))
 
-    view.show()
+    pose_view.show()
 
 
     sys.exit(app.exec_())

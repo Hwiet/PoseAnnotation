@@ -1,3 +1,5 @@
+import sys
+
 from PyQt5.QtCore import Qt, QAbstractItemModel, QModelIndex, QPersistentModelIndex, QVariant, QPointF
 from PyQt5.QtGui import QStandardItemModel
 
@@ -5,7 +7,7 @@ from pose import Pose
 
 
 class PoseModelItem:
-    def __init__(index):
+    def __init__(self, index):
         self._data = list()
         self._index = index
 
@@ -25,7 +27,10 @@ class PoseModelItem:
 
 class JointItem(PoseModelItem):
     def __init__(self, name, position, pose, index):
+        super().__init__(index)
+
         self._pose = pose
+        self._data += [None] * 2
         
         # data 0 is always the position
         self._data[0] = position
@@ -45,8 +50,8 @@ class JointItem(PoseModelItem):
 
 
     @position.setter
-    def position(self, x, y):
-        self._data[0] = [x, y]
+    def position(self, pos):
+        self._data[0] = pos
 
 
     @property
@@ -56,9 +61,12 @@ class JointItem(PoseModelItem):
 
     def data(self, n):
         try:
+            if n == 0:
+                return self.position
+
             return self._data[n]
         except IndexError:
-            raise "Attempted to reach out of bounds joint data"
+            print("Attempted to reach out of bounds joint data", file=sys.stderr)
         return None
 
 
@@ -76,6 +84,8 @@ class JointItem(PoseModelItem):
 
 class PoseItem(PoseModelItem):
     def __init__(self, joints, index):
+        super().__init__(index)
+
         self._joints = joints
 
 
@@ -83,14 +93,14 @@ class PoseItem(PoseModelItem):
         try:
             return self._joints[b]
         except IndexError:
-            raise "Joint index out of range"
+            print("Joint index out of range", file=sys.stderr)
 
 
     def data(self, n):
         try:
             return self._data[n]
         except IndexError:
-            raise "Attempted to reach out of bounds pose data"
+            print("Attempted to reach out of bounds pose data", file=sys.stderr)
         return None
 
 
@@ -132,9 +142,8 @@ class PoseModel(QAbstractItemModel):
 
     def index(self, row, column, parent=QModelIndex()):
         if not parent.isValid():
-            # if parent index expired,
-            # think of it to be first pose
-            parent_item = self._poses[0]
+            data = self._poses[row].data(column)
+            return self.createIndex(row, column, data)
         else:
             # returns reference to the item
             # this will always be a PoseItem
@@ -143,7 +152,7 @@ class PoseModel(QAbstractItemModel):
         try:
             item = parent_item.joint(row)
             data = item.data(column)
-            return createIndex(row, column, data)
+            return self.createIndex(row, column, data)
         except:
             # return empty index
             return QModelIndex()
@@ -156,28 +165,28 @@ class PoseModel(QAbstractItemModel):
         child_item = index.internalPointer()
 
         if type(child_item) is JointItem:
-            return self.createIndex(child_item.index, 0, child_item.pose)
+            return self.self.createIndex(child_item.index, 0, child_item.pose)
         else:
             return QModelIndex
            
     
-    def rowCount(self, parent):
-        if parent == QModelIndex():
-            return len(self._poses)
-
+    def rowCount(self, parent=QModelIndex()):
         if not parent.isValid():
             return 0
+
+        if parent == QModelIndex():
+            return len(self._poses)
     
         parent_item = parent.internalPointer() 
         return parent_item.rowCount()
 
 
-    def columnCount(self, parent):
-        if parent == QModelIndex():
-            return 1
-            
+    def columnCount(self, parent=QModelIndex()):
         if not parent.isValid():
             return 0
+
+        if parent == QModelIndex():
+            return 1
 
         parent_item = parent.internalPointer() 
         return parent_item.columnCount()
@@ -189,6 +198,15 @@ class PoseModel(QAbstractItemModel):
 
         item = index.internalPointer()
         return item.data(item.column())
+
+
+    def setData(self, index, value, role):
+        if not index.isValid():
+            return false
+
+        data = index.internalPointer()
+        data = value
+        return true
 
 
     def flags(self, index):
