@@ -33,6 +33,7 @@ class GraphicsView(QGraphicsView):
 
         self.setAlignment(Qt.AlignCenter) 
         self.fitInView(self._video, Qt.KeepAspectRatioByExpanding)
+        self.setResizeAnchor(QGraphicsView.AnchorViewCenter)
 
 
         self._video.nativeSizeChanged.connect(self.changeSize)
