@@ -28,7 +28,7 @@ class MediaPlayer(QMediaPlayer):
 
 
     def frame(self):
-        return self.position() / self._fps
+        return self.position() // self._fps
 
 
     def setFrame(self, n):

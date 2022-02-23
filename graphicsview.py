@@ -51,6 +51,15 @@ class GraphicsView(QGraphicsView):
 
 
     @pyqtSlot()
+    def jumpToFrame(self, n):
+         self._player.setFrame(n)
+
+
+    def currentFrame(self):
+        return self._player.frame()
+
+
+    @pyqtSlot()
     def changeSize(self):
         self._video.setSize(self._video.nativeSize())
         self.fitInView(self._video, Qt.KeepAspectRatioByExpanding)
