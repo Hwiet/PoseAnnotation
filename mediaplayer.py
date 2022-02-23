@@ -34,4 +34,8 @@ class MediaPlayer(QMediaPlayer):
     def setFrame(self, n):
         target = ceil(n * self._fps)
         if target < self.duration():
+            # setting state to `play` before changing position
+            # removes black flashes in between position changes
+            self.play()
             self.setPosition(target)
+            self.pause()
