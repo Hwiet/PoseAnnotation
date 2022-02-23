@@ -7,7 +7,7 @@ from custom_annotation import CustomFormat
 
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 from PyQt5.QtMultimediaWidgets import QVideoWidget, QGraphicsVideoItem 
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QAbstractScrollArea, QGraphicsWidget, QGraphicsProxyWidget
+from PyQt5.QtWidgets import *
 
 from PyQt5.QtCore import Qt, QAbstractItemModel, QModelIndex, QPersistentModelIndex, QVariant, QMetaType, QPointF, QSizeF, pyqtSignal, pyqtSlot
 from PyQt5.QtGui import QStandardItemModel
@@ -38,8 +38,23 @@ class MainWindow(QMainWindow):
 
         media = AnnotatedVideo('data/media/Golf Swing 0.mp4', CustomFormat('data/annotation/Golf Swing 0.txt'), keyframes)
 
-        graphics = GraphicsView('data/media/Golf Swing 0.mp4')
-        self.setCentralWidget(graphics)
+        self.graphics = GraphicsView('data/media/Golf Swing 0.mp4')
+        self.setCentralWidget(self.graphics)
+
+        fileMenu = self.menuBar().addMenu('File')
+        editMenu = self.menuBar().addMenu('Edit')
+        viewMenu = self.menuBar().addMenu('View')
+
+        sjafsdl = self.statusBar().showMessage('Golf Swing 0')
+
+        navigateMenu = self.menuBar().addMenu('Navigate')
+        navigateMenu.addAction('Jump to frame', self.jumpToFrame)
+
+
+    def jumpToFrame(self):
+        frame, ok = QInputDialog.getInt(self, 'Jump to frame', 'Frame', self.graphics.currentFrame(), 0, 1000)
+        if ok:
+            self.graphics.jumpToFrame(frame)
 
 
 if __name__ == '__main__':
