@@ -39,6 +39,7 @@ class MainWindow(QMainWindow):
         media = AnnotatedVideo('data/media/Golf Swing 0.mp4', CustomFormat('data/annotation/Golf Swing 0.txt'), keyframes)
 
         self.graphics = GraphicsView('data/media/Golf Swing 0.mp4')
+        self.graphics.setModel(PoseModel(media.poses))
         self.setCentralWidget(self.graphics)
 
         fileMenu = self.menuBar().addMenu('File')
