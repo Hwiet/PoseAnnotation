@@ -1,5 +1,5 @@
 from mediaplayer import MediaPlayer
-from joint_item import JointGraphicsItem
+from views.joint_item import JointGraphicsItem
 
 
 from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QOpenGLWidget, QGraphicsItem, QGraphicsSceneMouseEvent
