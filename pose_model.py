@@ -147,7 +147,7 @@ class PoseModel(QAbstractItemModel):
         child_item = index.internalPointer()
 
         if type(child_item) is JointItem:
-            return self.self.createIndex(child_item.index, 0, child_item.pose)
+            return self.createIndex(child_item.index, 0, child_item.pose)
         else:
             return QModelIndex
            
