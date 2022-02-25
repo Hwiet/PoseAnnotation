@@ -137,6 +137,11 @@ class GraphicsView(QGraphicsView):
 
         if key == Qt.Key_Space:
             self.spaceDown = True
+            if self._player.state() == MediaPlayer.StoppedState \
+                or self._player.state() == MediaPlayer.PausedState:
+                self._player.play()
+            else:
+                self._player.pause()
 
 
         if key == Qt.Key_Left:
