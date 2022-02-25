@@ -16,7 +16,7 @@ from PyQt5.QtGui import QStandardItemModel
 from PyQt5.QtCore import Qt
 from PyQt5.QtCore import QDir, QUrl
 
-from pose_model import PoseModel
+from models.pose_model import PoseModel
 from mediaplayer import MediaPlayer
 
 import pandas as pd
@@ -24,7 +24,8 @@ import cv2
 
 from PyQt5.QtCore import QObject, QRect
 
-from graphicsview import GraphicsView
+from views.graphicsview import GraphicsView
+from widgets.frame_status import FrameStatus
 
 
 class MainWindow(QMainWindow):
@@ -38,7 +39,9 @@ class MainWindow(QMainWindow):
 
         media = AnnotatedVideo('data/media/Golf Swing 0.mp4', CustomFormat('data/annotation/Golf Swing 0.txt'), keyframes)
 
-        self.graphics = GraphicsView('data/media/Golf Swing 0.mp4')
+        self.player = MediaPlayer()
+        self.graphics = GraphicsView('data/media/Golf Swing 0.mp4', self.player)
+
         self.graphics.setModel(PoseModel(media.poses))
         self.setCentralWidget(self.graphics)
 
@@ -46,7 +49,9 @@ class MainWindow(QMainWindow):
         editMenu = self.menuBar().addMenu('Edit')
         viewMenu = self.menuBar().addMenu('View')
 
-        sjafsdl = self.statusBar().showMessage('Golf Swing 0')
+        frameCount = self.graphics.frameCount()
+        frameStat = FrameStatus(self.player)
+        self.statusBar().addWidget(frameStat)
 
         navigateMenu = self.menuBar().addMenu('Navigate')
         navigateMenu.addAction('Jump to frame', self.jumpToFrame)
