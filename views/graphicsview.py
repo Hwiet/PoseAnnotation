@@ -2,9 +2,10 @@ from mediaplayer import MediaPlayer
 from views.joint_item import JointGraphicsItem
 
 
-from PyQt5.QtWidgets import QGraphicsView, QGraphicsScene, QOpenGLWidget, QGraphicsItem, QGraphicsSceneMouseEvent
+from PyQt5.QtWidgets import *
 from PyQt5.QtMultimediaWidgets import QGraphicsVideoItem 
 from PyQt5.QtCore import *
+from PyQt5.QtGui import QKeySequence, QBitmap, QPainter, QPen
 
 from math import pi
 
@@ -31,18 +32,16 @@ class GraphicsScene(QGraphicsScene):
 class GraphicsView(QGraphicsView):
     _joint_delegate = JointGraphicsItem
 
-    toPrevFrame = pyqtSignal()
-    toNextFrame = pyqtSignal()
     ready = pyqtSignal(QRect)
 
-    def __init__(self, video_file):
+    def __init__(self, video_file, mediaplayer):
         super().__init__()
 
         ##
         ## private fields
         ##
         self._video = QGraphicsVideoItem()
-        self._player = MediaPlayer()
+        self._player = mediaplayer
 
 
         self._player.setMedia(video_file)
@@ -55,18 +54,27 @@ class GraphicsView(QGraphicsView):
         scene.addItem(self._video)
         self.setScene(scene)
 
-        self.setAlignment(Qt.AlignCenter) 
-        self.fitInView(self._video, Qt.KeepAspectRatioByExpanding)
+        self.setAlignment(Qt.AlignCenter)
         self.setResizeAnchor(QGraphicsView.AnchorViewCenter)
 
 
         self._video.nativeSizeChanged.connect(self.changeSize)
-        self.toPrevFrame.connect(lambda: self._player.setFrame(self._player.frame() - 1))
-        self.toNextFrame.connect(lambda: self._player.setFrame(self._player.frame() + 1))
 
         self.spaceDown = False
         self.prevMousePos = QPointF()
         self.leftMouseDown = False
+
+
+        # fitOnScreenShortcut = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_0), self)
+        # fitOnScreenShortcut.activated.connect(lambda: self.fitInView(self._video, Qt.KeepAspectRatio))
+
+
+        # fitOnScreenAct = QAction('Fit on Screen')
+        # fitOnScreenAct.setShortcuts()
+        # fitOnScreenAct.acti
+
+    def fitInView(self):
+        super().fitInView(self._video, Qt.KeepAspectRatio)
 
 
     @property
@@ -90,21 +98,50 @@ class GraphicsView(QGraphicsView):
             jointIndex = self.model.index(j, 1, poseIndex)
 
             position = self.model.data(jointIndex).value()
-            jd = self._joint_delegate(j, position)
+            jd = self._joint_delegate(j, position, QPersistentModelIndex(jointIndex))
 
             jd.setParentItem(self._video)
 
         # print(len(self.scene().items()))
 
+    def paintEvent(self, event):
+        super().paintEvent(event)
+
+        if hasattr(self, 'paintSurface'):
+            painter = QPainter(self.paintSurface)
+            pen = QPen(Qt.red, 3)
+            painter.setPen(pen)
+            painter.drawLine(0, 0, 585, 685)
+
+
+    def _updateJoints(self, n):
+        for joint in self._video.childItems():
+            joint.show()
+            modelIndex = joint.modelIndex
+            row = modelIndex.row()
+            column = modelIndex.column()
+
+            try:
+                from_ = self._model.index(row, column, modelIndex.parent())
+                to = self._model.index(row, column, modelIndex.parent().siblingAtRow(n))
+                self._model.changePersistentIndex(from_, to)
+                joint.setPos(self.model.data(modelIndex).value())
+            except:
+                joint.hide()
+
    
     @pyqtSlot()
     def showPreviousFrame(self):
-        self._player.setFrame(self._player.frame() - 1)
+        prevFrame = self._player.frame() - 1
+        self._player.setFrame(prevFrame)
+        self._updateJoints(prevFrame)
 
 
     @pyqtSlot()
     def showNextFrame(self):
-        self._player.setFrame(self._player.frame() + 1)
+        nextFrame = self._player.frame() + 1
+        self._player.setFrame(nextFrame)
+        self._updateJoints(nextFrame)
 
 
     @pyqtSlot()
@@ -116,6 +153,10 @@ class GraphicsView(QGraphicsView):
         return self._player.frame()
 
 
+    def frameCount(self):
+        return self._player.frameCount()
+
+
     def currentModelIndex(self):
         if not (hasattr(self, '_currentModelIndex') and self._currentModelIndex.isValid()):
             self._currentModelIndex = self.model.index(self.currentFrame(), 0)
@@ -123,17 +164,33 @@ class GraphicsView(QGraphicsView):
         return self._currentModelIndex
 
 
+    def zoomOut(self):
+        dz = 1.1
+        self.scale(1/dz, 1/dz)
+
+
+    def zoomIn(self):
+        dz = 1.1
+        self.scale(dz, dz)
+
+
     @pyqtSlot()
     def changeSize(self):
         self._video.setSize(self._video.nativeSize())
-        self.fitInView(self._video, Qt.KeepAspectRatioByExpanding)
+        bitmap = QBitmap(self._video.nativeSize().toSize())
+        bitmap.clear()
+        self.paintDevice = QWidget()
+        self.paintDevice.setAttribute(Qt.WA_TranslucentBackground, True)
+        self.paintDevice.setMinimumSize(self._video.nativeSize().toSize())
+        widgetItem = self.scene().addWidget(self.paintDevice)
+        widgetItem.setParentItem(self._video)
+        self.fitInView()
         self.ready.emit(QRect(QPoint(), self._video.nativeSize().toSize()))
 
 
     def keyPressEvent(self, event):
         key = event.key()
         dz = 1.1
-
 
         if key == Qt.Key_Space:
             self.spaceDown = True
@@ -142,29 +199,6 @@ class GraphicsView(QGraphicsView):
                 self._player.play()
             else:
                 self._player.pause()
-
-
-        if key == Qt.Key_Left:
-            self.toPrevFrame.emit()
-
-
-        elif key == Qt.Key_Right:
-            self.toNextFrame.emit()
-
-
-        elif key == Qt.Key_0:
-            # return to normal zoom level
-            self.resetTransform()
-
-
-        elif key == Qt.Key_Minus:
-            # zoom out
-            self.scale(1/dz, 1/dz)
-
-
-        elif key == Qt.Key_Equal:
-            # zoom in
-            self.scale(dz, dz)
 
 
     def keyReleaseEvent(self, event):
