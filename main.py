@@ -21,6 +21,7 @@ from mediaplayer import MediaPlayer
 
 import pandas as pd
 import cv2
+from collections import namedtuple
 
 from PyQt5.QtCore import QObject, QRect
 
@@ -28,16 +29,160 @@ from views.graphicsview import GraphicsView
 from widgets.frame_status import FrameStatus
 
 
+
+def jumpToFrame(self):
+    frame, ok = QInputDialog.getInt(
+        window,
+        'Jump to frame',
+        'Frame',
+        player.frame(),
+        0, 1000
+    )
+
+    if ok: player.setFrame(frame)
+
+
+
+class MenuBar(QMenuBar):
+    Action = namedtuple('Action', ['name', 'keySequence', 'slot'], defaults=(None, None))
+
+
+    def __init__(self, parent: QWidget=None):
+        super().__init__(parent)
+
+        self.addMenu(
+            self.newMenu(
+                'File',
+                (
+                    Action(
+                        'Save', QKeySequence.Save
+                    ),
+                    Action(
+                        'Revert'
+                    ),
+                    Action(
+                        'Quit', QKeySequence(Qt.CTRL + Qt.Key_Q),
+                        lambda: QApplication.quit()
+                    )
+                )
+            )
+        )
+
+        self.addMenu(
+            self.newMenu(
+                'Edit',
+                (
+                    Action(
+                        'Undo', QKeySequence.Undo
+                    ),
+                    Action(
+                        'Redo', QKeySequence.Redo
+                    )
+                )
+            )
+        )
+
+        self.addMenu(
+            self.newMenu(
+                'View',
+                (
+                    Action(
+                        'Zoom In', QKeySequence.ZoomIn,
+                        graphics.zoomIn
+                    ),
+                    Action(
+                        'Zoom Out', QKeySequence.ZoomOut,
+                        graphics.zoomOut
+                    ),
+                    Action(
+                        'Fit on Screen', QKeySequence(Qt.CTRL + Qt.Key_0),
+                        graphics.fitInView
+                    )
+                )
+            )
+        )
+
+        self.prevFrameAct  =  Action(
+                        'Previous Frame', QKeySequence(Qt.Key_Left),
+                        graphics.showPreviousFrame
+                    )
+
+        self.addMenu(
+            self.newMenu(
+                'Navigate',
+                (
+                   ,
+                    Action(
+                        'Next Frame', QKeySequence(Qt.Key_Right),
+                        graphics.showNextFrame
+                    ),
+                    Action(
+                        'Jump to Frame', slot=jumpToFrame
+                    )
+                )
+            )
+        )
+
+        # self.addMenu(
+        #     self.newMenu(
+        #         'Playback',
+        #         (
+        #             Action(
+        #                 'Play'
+        #             )
+        #         )
+        #     )
+        # )
+
+    def newMenu(self, menuName, actions):
+        menu = QMenu(menuName)
+
+        for action in actions:
+            x = menu.addAction(action.name)
+
+            if action.keySequence is not None:
+                x.setShortcut(action.keySequence)
+            if action.slot is not None:
+                x.triggered.connect(action.slot)
+
+            menu.addAction(x)
+
+        return menu
+
+
+    def newAction(self, text, keySequence=None, slot=None):
+        action = QAction(text)
+        if keySequence is not None:
+            action.setShortcut(keySequnce)
+        if slot is not None:
+            action.triggered.connect(slot)
+
+        return action
+
+
+    def onPositionChange(self):
+        # can go to previous frame after position change?
+        if player.frame() - 1 >= 0:
+            self.prevFrameAct.setEnabled(True)
+
+            if player.frame() + 1 < player.frameCount():
+                self.nextFrameAct.setEnabled(True)
+            else:
+                self.nextFrameAct.setEnabled(False)
+        else:
+            self.prevFrameAct.setEnabled(False)
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        keyframes = pd.read_pickle('data/golfDB.pkl').loc[0]['events']
-        keyframes = [frame - keyframes[0] for frame in keyframes]
-        keyframes.pop(0)
-        keyframes.pop(len(keyframes) - 1)
+        graphics.setJointModels(jointModels)
+        self.setCentralWidget(graphics)
 
-        media = AnnotatedVideo('data/media/Golf Swing 0.mp4', CustomFormat('data/annotation/Golf Swing 0.txt'), keyframes)
+        frameCount = player.frameCount()
+        frameStat = FrameStatus(player)
+        self.statusBar().addWidget(frameStat)
 
         self.player = MediaPlayer()
         self.graphics = GraphicsView('data/media/Golf Swing 0.mp4', self.player)
