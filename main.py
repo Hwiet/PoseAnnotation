@@ -19,8 +19,11 @@ import cv2
 
 from views.graphicsview import GraphicsView
 from widgets.frame_status import FrameStatus
+from collections import namedtuple
 
 
+
+SlotSignalPair = namedtuple('SlotSignalPair', ['signal', 'slot'])
 
 def jumpToFrame(self):
     frame, ok = QInputDialog.getInt(
@@ -89,6 +92,13 @@ class MenuBar(QMenuBar):
             graphics.fitInView,
             QKeySequence(Qt.CTRL + Qt.Key_0)
         )
+        viewMenu.addSeparator()
+        d = viewMenu.addAction(
+            QIcon(),
+            'Show labels',
+        )
+        d.setCheckable(True)
+        slotSignalPairs.append(SlotSignalPair(signal=d.toggled, slot=graphics.showLabels))
         self.addMenu(viewMenu)
 
 
@@ -181,11 +191,14 @@ for pose in media.poses:
 
         jointModels[tableIndex].appendRow(items)
 
+slotSignalPairs = []
+
 
 player = MediaPlayer()
 graphics = GraphicsView('data/media/Golf Swing 0.mp4', player)
 
 window = MainWindow()
+graphics.registerSS(slotSignalPairs[0])
 window.showMaximized()
 
 sys.exit(app.exec_())
