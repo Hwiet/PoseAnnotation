@@ -20,6 +20,7 @@ import cv2
 from views.graphicsview import GraphicsView
 from widgets.frame_status import FrameStatus
 from collections import namedtuple
+from widgets.video_progress_bar import VideoProgressToolBar
 
 
 
@@ -149,6 +150,11 @@ class MainWindow(QMainWindow):
 
         self.setMenuBar(MenuBar())
 
+        progressbar = VideoProgressToolBar(self)
+        self.addToolBar(Qt.BottomToolBarArea, progressbar)
+        slotSignalPairs.append(SlotSignalPair(signal=progressbar.widget.valueChanged, slot=graphics.showFrame))
+        slotSignalPairs.append(SlotSignalPair(signal=player.frameCountChanged, slot=progressbar.widget.setRange))
+
 
         player.positionChanged.connect(self.menuBar().onPositionChange)
 
@@ -198,7 +204,10 @@ player = MediaPlayer()
 graphics = GraphicsView('data/media/Golf Swing 0.mp4', player)
 
 window = MainWindow()
-graphics.registerSS(slotSignalPairs[0])
+
+for ss in slotSignalPairs:
+    graphics.registerSS(ss)
+
 window.showMaximized()
 
 sys.exit(app.exec_())

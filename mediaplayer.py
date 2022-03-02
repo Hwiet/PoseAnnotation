@@ -1,11 +1,13 @@
 import cv2
 from math import floor, ceil
 from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
-from PyQt5.QtCore import QUrl, pyqtSlot
+from PyQt5.QtCore import QUrl, pyqtSlot, pyqtSignal
 
 
 class MediaPlayer(QMediaPlayer):
-    DEFAULT_NOTIFY_INTERVAL = 1000
+    frameChanged = pyqtSignal(int)
+    frameCountChanged = pyqtSignal(int)
+    DEFAULT_NOTIFY_INTERVAL = 10
 
 
     def __init__(self):
@@ -37,6 +39,7 @@ class MediaPlayer(QMediaPlayer):
         super().setMedia(QMediaContent(QUrl(filename)))
 
         self._fps = cv2.VideoCapture(filename).get(cv2.CAP_PROP_FPS)
+        self.frameCountChanged.emit(self._millisecondsToFrames(self.duration()))
 
 
     def frame(self):
@@ -55,6 +58,7 @@ class MediaPlayer(QMediaPlayer):
             self.play()
             self.setPosition(target)
             self.pause()
+            self.frameChanged.emit(n)
 
     
     def _framesToMilliseconds(self, f):

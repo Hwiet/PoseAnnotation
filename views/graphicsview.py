@@ -131,6 +131,12 @@ class GraphicsView(QGraphicsView):
         self._updateJoints(nextFrame)
 
 
+    @pyqtSlot(int)
+    def showFrame(self, n):
+        self._player.setFrame(n)
+        self._updateJoints(n)
+
+
     def _updateJoints(self, frame):
         for joint in self._jointItems:
             joint.setPosAt(frame)
