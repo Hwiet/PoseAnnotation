@@ -84,6 +84,7 @@ class GraphicsView(QGraphicsView):
             jointItem = self._joint_delegate(i, models[i])
             jointItem.setParentItem(self._video)
             jointItems.append(jointItem)
+        self._jointItems = jointItems
 
         x = (
             (0, 1),
@@ -108,17 +109,27 @@ class GraphicsView(QGraphicsView):
             edge = EdgeItem(jointItems[y[0]], jointItems[y[1]])
             edge.setParentItem(self._video)
 
+            jointItems[y[0]].emit('positionChanged', jointItems[y[0]], jointItems[y[0]].scenePos())
+            jointItems[y[1]].emit('positionChanged', jointItems[y[1]], jointItems[y[1]].scenePos())
+
    
     @pyqtSlot()
     def showPreviousFrame(self):
         prevFrame = self._player.frame() - 1
         self._player.setFrame(prevFrame)
+        self._updateJoints(prevFrame)
 
 
     @pyqtSlot()
     def showNextFrame(self):
         nextFrame = self._player.frame() + 1
         self._player.setFrame(nextFrame)
+        self._updateJoints(nextFrame)
+
+
+    def _updateJoints(self, frame):
+        for joint in self._jointItems:
+            joint.setPosAt(frame)
 
 
     def zoomOut(self):

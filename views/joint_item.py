@@ -104,7 +104,7 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
     @property
     def modelIndex(self) -> QModelIndex:
         """
-        Returns model index located at row=frameNum and column=0
+        Returns model index located at row=frameNum and column=1
         Convert private field `_modelIndex` from QPersistentModelIndex to
         QModelIndex
         """
@@ -161,8 +161,8 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
 
     def _previousValidIndex(self, frame):
         previousModelIndex = self._model.index(
-            row=self.modelIndex.row()-1,
-            column=self.modelIndex.column()
+            self.modelIndex.row()-1,
+            self.modelIndex.column()
         )
 
         for i in range(previousModelIndex.row(), -1, -1):
@@ -172,7 +172,7 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
 
             # decrement
             previousModelIndex = previousModelIndex.siblingAtRow(
-                row=previousModelIndex.row()-1,
+                previousModelIndex.row()-1,
             )
 
         if previousModelIndex.row() == QModelIndex():
@@ -183,8 +183,8 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
 
     def _nextValidIndex(self, frame) -> QModelIndex:
         nextModelIndex = self._model.index(
-            row=self.modelIndex.row()-1,
-            column=self.modelIndex.column()
+            self.modelIndex.row()+1,
+            self.modelIndex.column()
         )
 
         for i in range(nextModelIndex.row(), self._model.rowCount()):
@@ -194,7 +194,7 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
 
             # increment
             nextModelIndex = nextModelIndex.siblingAtRow(
-                row=nextModelIndex.row()+1,
+                nextModelIndex.row()+1,
             )
 
         if nextModelIndex.row() == QModelIndex():
@@ -202,7 +202,6 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
             return QModelIndex()
         else:
             return nextModelIndex
-
 
     def frame(self, index: QModelIndex):
         """return frame that corresponds to this index"""
@@ -214,29 +213,34 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
         frame. This method _does not_ update data in memory.
         """
         matches = self._model.match(
-            start=self.modelIndex,
-            role=Qt.UserRole+1,
-            value=QVariant(frame))
+            self.modelIndex,
+            Qt.UserRole+1,
+            QVariant(frame))
         
         newPos = None
         if matches != []:
             # found a match, return position
-            newPos = matches[0].data(role=Qt.UserRole+1)
-            self.setPos(newPos)
+            newPos = matches[0].data(Qt.UserRole+1)
+            self.setScenePos(newPos)
         else:
             # try to find values before and after this frame
             prev_ = self._previousValidIndex(frame)
             next_ = self._nextValidIndex(frame)
 
-            newPos = self._linear(
-                t=frame,
-                tMin=prev_.frame,
-                tMax=next_.frame,
-                value1=prev_.data(role=Qt.UserRole+1),
-                value2=next_.data(role=Qt.UserRole+1)
-            )
-            self.setPos(newPos)
+            if not prev_.isValid():
+                newPos = next_.data(Qt.UserRole+1)
+            elif not next_.isValid():
+                newPos = prev_.data(Qt.UserRole+1)
+            else:
+                newPos = self._linear(
+                    t=frame,
+                    tMin=prev_.row(),
+                    tMax=next_.row(),
+                    value1=prev_.data(Qt.UserRole+1),
+                    value2=next_.data(Qt.UserRole+1)
+                )
 
+        self.setPos(newPos)
         self.emit('positionChanged', self, newPos)
         return newPos
 
