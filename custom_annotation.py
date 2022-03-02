@@ -16,7 +16,7 @@ class CustomFormat(Annotation):
             while True:
                 n = next(data)
                 if n == []:
-                    poses.append(None)
+                    poses.append(PoseNetPose())
                 else:
                     poses.append(self.process_pose(n[0]))
         except StopIteration:
@@ -25,7 +25,7 @@ class CustomFormat(Annotation):
 
     def process_pose(self, json_data):
         confidence = float(json_data['confidence'])
-        joints = {}
+        joints = [None] * 17
 
         for x in json_data['joints']:
             if type(x) is dict:
@@ -37,6 +37,6 @@ class CustomFormat(Annotation):
                     confidence=x['confidence'],
                     id=x['id'])
 
-                joints[PoseNetJoint.keys[x['name']]] = new_joint
+                joints[int(x['name'])] = new_joint
 
         return PoseNetPose(confidence, joints)

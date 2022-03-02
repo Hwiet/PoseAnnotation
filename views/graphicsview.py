@@ -1,5 +1,5 @@
 from mediaplayer import MediaPlayer
-from views.joint_item import JointGraphicsItem
+from views.joint_item import *
 
 
 from PyQt5.QtWidgets import *
@@ -16,17 +16,13 @@ class GraphicsScene(QGraphicsScene):
 
 
     def mouseMoveEvent(self, event):
+        # keep behavior of mouseMoveEvent from super class
         QGraphicsScene.mouseMoveEvent(self, event)
-        try:
-            grabber = self.mouseGrabberItem()
+        
+        grabber = self.mouseGrabberItem()
 
-            if grabber is None:
-                return
-
-            grabberIndex = self.view.model.index(grabber.index, 1, self.view.currentModelIndex())
-            self.view.model.setData(grabberIndex, QVariant(grabber.scenePos()))
-        except AttributeError:
-            self.view = self.views()[0]
+        if isinstance(grabber, JointGraphicsItem):
+            grabber.setData(QVariant(event.scenePos()))
 
 
 class GraphicsView(QGraphicsView):
@@ -77,91 +73,52 @@ class GraphicsView(QGraphicsView):
         super().fitInView(self._video, Qt.KeepAspectRatio)
 
 
-    @property
-    def model(self):
-        return self._model
+    def setPoseModel(self, model):
+        self._poseModel = model
 
 
-    def setModel(self, model):
-        """Fetches the first set of joints from the model"""
+    def setJointModels(self, models):
+        jointItems = list()
 
-        self._model = model
-        poseIndex = None
+        for i in range(len(models)):
+            jointItem = self._joint_delegate(i, models[i])
+            jointItem.setParentItem(self._video)
+            jointItems.append(jointItem)
 
-        for i in range(self.model.rowCount()):
-            poseIndex = self.model.index(i, 0)
+        x = (
+            (0, 1),
+            (1, 3),
+            (0, 2),
+            (2, 4),
+            (0, 5),
+            (5, 7),
+            (7, 9),
+            (5, 11),
+            (11, 13),
+            (13, 15),
+            (0, 6),
+            (6, 8),
+            (8, 10),
+            (6, 12),
+            (12, 14),
+            (14, 16)
+        )
 
-            if poseIndex.isValid() and self.model.rowCount(poseIndex) > 0:
-                break
-
-        for j in range(self.model.rowCount(poseIndex)):
-            jointIndex = self.model.index(j, 1, poseIndex)
-
-            position = self.model.data(jointIndex).value()
-            jd = self._joint_delegate(j, position, QPersistentModelIndex(jointIndex))
-
-            jd.setParentItem(self._video)
-
-        # print(len(self.scene().items()))
-
-    def paintEvent(self, event):
-        super().paintEvent(event)
-
-        if hasattr(self, 'paintSurface'):
-            painter = QPainter(self.paintSurface)
-            pen = QPen(Qt.red, 3)
-            painter.setPen(pen)
-            painter.drawLine(0, 0, 585, 685)
-
-
-    def _updateJoints(self, n):
-        for joint in self._video.childItems():
-            joint.show()
-            modelIndex = joint.modelIndex
-            row = modelIndex.row()
-            column = modelIndex.column()
-
-            try:
-                from_ = self._model.index(row, column, modelIndex.parent())
-                to = self._model.index(row, column, modelIndex.parent().siblingAtRow(n))
-                self._model.changePersistentIndex(from_, to)
-                joint.setPos(self.model.data(modelIndex).value())
-            except:
-                joint.hide()
+        for y in x:
+            edge = EdgeItem(jointItems[y[0]], jointItems[y[1]])
+            edge.setParentItem(self._video)
 
    
     @pyqtSlot()
     def showPreviousFrame(self):
         prevFrame = self._player.frame() - 1
         self._player.setFrame(prevFrame)
-        self._updateJoints(prevFrame)
 
 
     @pyqtSlot()
     def showNextFrame(self):
         nextFrame = self._player.frame() + 1
         self._player.setFrame(nextFrame)
-        self._updateJoints(nextFrame)
-
-
-    @pyqtSlot()
-    def jumpToFrame(self, n):
-         self._player.setFrame(n)
-
-
-    def currentFrame(self):
-        return self._player.frame()
-
-
-    def frameCount(self):
-        return self._player.frameCount()
-
-
-    def currentModelIndex(self):
-        if not (hasattr(self, '_currentModelIndex') and self._currentModelIndex.isValid()):
-            self._currentModelIndex = self.model.index(self.currentFrame(), 0)
-
-        return self._currentModelIndex
 
 
     def zoomOut(self):
@@ -177,35 +134,8 @@ class GraphicsView(QGraphicsView):
     @pyqtSlot()
     def changeSize(self):
         self._video.setSize(self._video.nativeSize())
-        bitmap = QBitmap(self._video.nativeSize().toSize())
-        bitmap.clear()
-        self.paintDevice = QWidget()
-        self.paintDevice.setAttribute(Qt.WA_TranslucentBackground, True)
-        self.paintDevice.setMinimumSize(self._video.nativeSize().toSize())
-        widgetItem = self.scene().addWidget(self.paintDevice)
-        widgetItem.setParentItem(self._video)
         self.fitInView()
         self.ready.emit(QRect(QPoint(), self._video.nativeSize().toSize()))
-
-
-    def keyPressEvent(self, event):
-        key = event.key()
-        dz = 1.1
-
-        if key == Qt.Key_Space:
-            self.spaceDown = True
-            if self._player.state() == MediaPlayer.StoppedState \
-                or self._player.state() == MediaPlayer.PausedState:
-                self._player.play()
-            else:
-                self._player.pause()
-
-
-    def keyReleaseEvent(self, event):
-        key = event.key()
-
-        if key == Qt.Key_Space:
-            self.spaceDown = False
 
 
     def mouseDownEvent(self, event):

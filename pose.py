@@ -8,9 +8,12 @@ Edge = namedtuple("Edge", ['joint1', 'joint2'])
 class Joint:
     keys = []
 
-    def __init__(self, position, id):
+    def __init__(self, position, name):
         self.position = position
-        self.id = id
+        self.name = name
+        self.data = dict()
+        self.data['position'] = position
+        self.data['name'] = name
 
 
     def __hash__(self):
@@ -26,9 +29,30 @@ class Joint:
 class Pose():
     joint_cls = Joint
 
-
+    
     def __init__(self, joints: List[joint_cls]):
         self.joints = joints
+        self.data = dict()
+
+
+    def __len__(self):
+        return len(self.joints)
+
+
+    def __lt__(self, other):
+        return len(self.joints) < len(other.joints)
+
+
+    def __le__(self, other):
+        return len(self.joints) <= len(other.joints)
+
+
+    def __ge__(self, other):
+        return len(self.joints) >= len(other.joints)
+
+
+    def __gt__(self, other):
+        return len(self.joints) > len(other.joints)
 
 
     def get_edges(self):
@@ -48,22 +72,20 @@ class PoseNetJoint(Joint):
 
 
     def __init__(self, confidence, name, cell, is_valid, position, id):
-        super().__init__(position, id)
-        self.cell = cell
-        self.name = name
-        self.confidence = confidence
-        self.is_valid = is_valid
-        self.position = position
-        self.id = id
+        super().__init__(position, name)
+        self.data['cell'] = cell
+        self.data['confidence'] = confidence
+        self.data['is_valid'] = is_valid
+        self.data['id'] = id
 
 
 class PoseNetPose(Pose):
     joint_cls = PoseNetJoint
 
 
-    def __init__(self, confidence, joints):
+    def __init__(self, confidence=0, joints=list()):
         super().__init__(joints)
-        self.confidence = confidence
+        self.data['confidence'] = confidence
 
 
     def get_edges(self):
