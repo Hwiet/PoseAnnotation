@@ -145,6 +145,12 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
         if super_.isNull():
             return self.modelIndex.data(POSITION)
         return super_
+
+    def showLabel(self):
+        self._label.show()
+
+    def hideLabel(self):
+        self._label.hide()
             
     def _linear(
             self,

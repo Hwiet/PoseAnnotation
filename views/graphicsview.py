@@ -59,15 +59,10 @@ class GraphicsView(QGraphicsView):
         self.spaceDown = False
         self.prevMousePos = QPointF()
         self.leftMouseDown = False
+            
 
-
-        # fitOnScreenShortcut = QShortcut(QKeySequence(Qt.CTRL + Qt.Key_0), self)
-        # fitOnScreenShortcut.activated.connect(lambda: self.fitInView(self._video, Qt.KeepAspectRatio))
-
-
-        # fitOnScreenAct = QAction('Fit on Screen')
-        # fitOnScreenAct.setShortcuts()
-        # fitOnScreenAct.acti
+    def registerSS(self, ss):
+        ss.signal.connect(ss.slot)
 
     def fitInView(self):
         super().fitInView(self._video, Qt.KeepAspectRatio)
@@ -112,7 +107,16 @@ class GraphicsView(QGraphicsView):
             jointItems[y[0]].emit('positionChanged', jointItems[y[0]], jointItems[y[0]].scenePos())
             jointItems[y[1]].emit('positionChanged', jointItems[y[1]], jointItems[y[1]].scenePos())
 
-   
+    @pyqtSlot(bool)
+    def showLabels(self, doShow):
+        print('caled')
+        if doShow:
+            for joint in self._jointItems:
+                joint.showLabel()
+        else:
+            for joint in self._jointItems:
+                joint.hideLabel()
+
     @pyqtSlot()
     def showPreviousFrame(self):
         prevFrame = self._player.frame() - 1
