@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QGraphicsEllipseItem, QAbstractItemDelegate, QGraphicsItem, QGraphicsLineItem
 from PyQt5.QtCore import *
-from PyQt5.QtGui import QBrush, QPen
+from PyQt5.QtGui import QBrush, QPen, QStandardItem
 from functools import partial
 from typing import Dict, List
 
@@ -160,6 +160,9 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
             raise ValueError(f'Cannot interpolate values of {value1.type()}')
 
     def _previousValidIndex(self, frame):
+        if self.modelIndex.row() <= 0:
+            return QModelIndex()
+
         previousModelIndex = self._model.index(
             self.modelIndex.row()-1,
             self.modelIndex.column()
@@ -188,7 +191,8 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
         )
 
         for i in range(nextModelIndex.row(), self._model.rowCount()):
-            if nextModelIndex.row() != QModelIndex():
+            print(nextModelIndex.data(POSITION))
+            if nextModelIndex.data(POSITION) != QVariant():
                 # found a valid index, break out of search loop
                 break
 
@@ -213,7 +217,7 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
         frame. This method _does not_ update data in memory.
         """
         matches = self._model.match(
-            self.modelIndex,
+            self.modelIndex.siblingAtRow(frame),
             Qt.UserRole+1,
             QVariant(frame))
         
@@ -221,11 +225,12 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
         if matches != []:
             # found a match, return position
             newPos = matches[0].data(Qt.UserRole+1)
-            self.setScenePos(newPos)
+            self.setPos(newPos)
         else:
             # try to find values before and after this frame
             prev_ = self._previousValidIndex(frame)
             next_ = self._nextValidIndex(frame)
+            # print(f'{prev_.row()}, {next_.row()}')
 
             if not prev_.isValid():
                 newPos = next_.data(Qt.UserRole+1)
@@ -240,6 +245,7 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
                     value2=next_.data(Qt.UserRole+1)
                 )
 
+        self.modelIndex = self.modelIndex.siblingAtRow(frame)
         self.setPos(newPos)
         self.emit('positionChanged', self, newPos)
         return newPos
