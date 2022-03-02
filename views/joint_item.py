@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QGraphicsEllipseItem, QAbstractItemDelegate, QGraphicsItem, QGraphicsLineItem
+from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
-from PyQt5.QtGui import QBrush, QPen, QStandardItem
+from PyQt5.QtGui import *
 from functools import partial
 from typing import Dict, List
 
@@ -86,12 +86,18 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
             currentFrame: int=0):
         point = model.data(model.index(0, 1), POSITION)
         super(JointGraphicsItem, self).__init__(QRectF(point, point + QPointF(10, 10)))
+
+
         self._jointIndex = jointIndex
         self._model = model
         self._modelIndex = self.model.index(0, 1)
         self.setBrush(QBrush(Qt.green, Qt.SolidPattern))
         self.setFlags(QGraphicsItem.ItemIsMovable)
 
+        self._label = QGraphicsSimpleTextItem('asdfasdf', self)
+        self._label.setPos(self.pos() + QPointF(12, -3))
+        self._label.setFont(QFont())
+        self._label.setBrush(QBrush(Qt.green, Qt.SolidPattern))
 
     @property
     def model(self):
@@ -128,13 +134,18 @@ class JointGraphicsItem(QGraphicsEllipseItem, __ControlledItem):
         self.modelIndex = self.modelIndex.siblingAtRow(frame)
         self.setPosAt(frame)
 
+    def pos(self):
+        super_ = super().pos()
+        if super_.isNull():
+            return self.mapToParent(self._modelIndex.data(POSITION))
+        return super_
+
     def scenePos(self):
         super_ = super().scenePos()
         if super_.isNull():
             return self.modelIndex.data(POSITION)
         return super_
             
-
     def _linear(
             self,
             t: int,
