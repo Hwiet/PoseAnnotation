@@ -1,0 +1,22 @@
+{
+    "title": "PoseNet Pose",
+    "description": "Pose data",
+    "type": "object",
+    "properties": {
+        "joints": {
+            "type": "array",
+            "items": {
+                "description": "Data associated with a joint.",
+                "$ref": "./PoseNet_Joint.json"
+            }
+        },
+        "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+        }
+    },
+    "required": [
+        "joints"
+    ]
+}
