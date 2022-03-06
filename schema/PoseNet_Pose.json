@@ -5,10 +5,13 @@
     "properties": {
         "joints": {
             "type": "array",
-            "items": {
-                "description": "Data associated with a joint.",
-                "$ref": "./PoseNet_Joint.json"
-            }
+            "contains": {
+                "type": "integer",
+                "$ref": "#/$defs/joint"
+            },
+            "minItems": 34,
+            "maxItems": 34,
+            "uniqueItems": true
         },
         "confidence": {
             "type": "number",
@@ -17,6 +20,54 @@
         }
     },
     "required": [
-        "joints"
-    ]
+        "joints", "confidence"
+    ],
+    "$defs": {
+        "joint": {
+            "type": "object",
+            "properties": {
+                "cell": {
+                    "type": "object",
+                    "properties": {
+                        "yIndex": {
+                            "type": "integer"
+                        },
+                        "xIndex": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "yIndex",
+                        "xIndex"
+                    ]
+                },
+                "isValid": {
+                    "type": "boolean"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "name": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "position": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 2
+                }
+            },
+            "required": [
+                "name",
+                "position"
+            ]
+        }
+    }
 }
