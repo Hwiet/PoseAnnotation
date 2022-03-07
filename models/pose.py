@@ -16,10 +16,16 @@ class PoseModel(QStandardItemModel):
     def __init__(self):
         super().__init__()
         self._items = []
+        self._jointNames = []
 
     def setScheme(self, filename):
         with open(filename) as fp:
             self._validator = fastjsonschema.compile(json.load(fp))
+
+    def setJointNames(self, filename):
+        with open(filename) as fp:
+            for line in fp:
+                self._jointNames.append(line.strip())
 
     def setUp(self, io: StringIO) -> int:
         """Sets pose data
@@ -80,6 +86,9 @@ class PoseModel(QStandardItemModel):
 
     def joint(self, n, person) -> QModelIndex:
         return self.createIndex(n+1, person)
+
+    def jointName(self, n):
+        return self._jointNames[n]
 
     def frameData(self, frame, label, parent):
         if not parent.isValid():
