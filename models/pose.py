@@ -16,7 +16,7 @@ class PoseModel(QStandardItemModel):
     def __init__(self, modelName: str=None, io: StringIO=None):
         super().__init__()
         self._items = []
-        self._jointNames = []
+        self._jointLabels = []
 
         if modelName is not None:
             self.setScheme(f'{modelName}_Pose.json')
@@ -35,7 +35,7 @@ class PoseModel(QStandardItemModel):
             stream (StringIO): A text stream.
         """
         for line in stream:
-            self._jointNames.append(line.strip())
+            self._jointLabels.append(line.strip())
 
     def setUp(self, stream) -> int:
         """Sets pose data
@@ -120,9 +120,9 @@ class PoseModel(QStandardItemModel):
     def joint(self, n, person) -> QModelIndex:
         return self.createIndex(n+1, person)
 
-    def jointName(self, index):
+    def jointLabel(self, index):
         if index.isValid():
-            return self._jointNames[index.row()-1]
+            return self._jointLabels[index.row()-1]
 
     def frameData(self, frame, label, parent):
         if not parent.isValid():
