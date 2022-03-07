@@ -13,39 +13,51 @@ class PoseModel(QStandardItemModel):
     """A Qt model for reading and storing pose data extracted from an
     image or video.
     """
-    def __init__(self):
+    def __init__(self, modelName: str=None, io: StringIO=None):
         super().__init__()
         self._items = []
         self._jointNames = []
 
-    def setScheme(self, filename):
-        with open(filename) as fp:
-            self._validator = fastjsonschema.compile(json.load(fp))
+        if modelName is not None:
+            self.setScheme(f'{modelName}_Pose.json')
+        if io is not None:
+            self.setUp(io)
 
-    def setJointNames(self, filename):
-        with open(filename) as fp:
-            for line in fp:
-                self._jointNames.append(line.strip())
+    def setScheme(self, scheme):
+        self._validator = fastjsonschema.compile(scheme)
 
-    def setUp(self, io: StringIO) -> int:
+    def setJointNames(self, stream):
+        """Set joint names.
+
+        model.setJointNames(open('<filename>'), 'r')
+
+        Args:
+            stream (StringIO): A text stream.
+        """
+        for line in stream:
+            self._jointNames.append(line.strip())
+
+    def setUp(self, stream) -> int:
         """Sets pose data
 
         Args:
-            io (StringIO): File-like object containing one or more JSON
-        documents.
+            stream (StringIO): File-like object containing one or more
+        JSON documents.
 
         Returns:
             int: Number of frames or snapshots added.
         """
-        it = jsonstream.load(io)
+        it = jsonstream.load(stream)
         new_items = 0
         try:
             while True:
                 self._items.append( [Pose(obj, self._validator) for obj in next(it)] )
                 new_items += 1
         except StopIteration:
-            if new_items == 0:
-                self._items.append( [] )
+            pass
+        except json.decoder.JSONDecodeError as e:
+            self._items.clear()
+            raise e
 
         return new_items
 
@@ -64,6 +76,24 @@ class PoseModel(QStandardItemModel):
         originated from an image."""
         return len(self._items)
 
+    def _isValidFrameIndex(self, n) -> bool:
+        return 0 <= n < len(self._items)
+
+    def _isImage(self) -> bool:
+        return self.frameCount() == 1
+
+    def previousValidFrame(self, n=0):
+        if self._isImage():
+            return -1
+        if not self._isValidFrameIndex(n):
+            raise IndexError
+            return
+
+        for i in reversed(range(0, n+1)):
+            frame = self._items[i]
+            if len(frame) > 0: return i
+        return -1
+
     def nextValidFrame(self, n=0) -> int:
         """Return the next frame that contains pose data. This is useful
         for when not every frame has been annotated. If no valid frame
@@ -73,8 +103,11 @@ class PoseModel(QStandardItemModel):
             n (int, optional): The frame from which to begin searching.
         Defaults to 0.
         """
-        if n >.0 and self.frameCount() == 1:
-            return -1 # TODO: Should we warn the user?
+        if self._isImage():
+            return -1
+        if not self._isValidFrameIndex(n):
+            raise IndexError
+            return
 
         for i in range(n, len(self._items)):
             frame = self._items[i]
@@ -87,14 +120,18 @@ class PoseModel(QStandardItemModel):
     def joint(self, n, person) -> QModelIndex:
         return self.createIndex(n+1, person)
 
-    def jointName(self, n):
-        return self._jointNames[n]
+    def jointName(self, index):
+        if index.isValid():
+            return self._jointNames[index.row()-1]
 
     def frameData(self, frame, label, parent):
         if not parent.isValid():
             return QVariant()
 
         person = parent.column()
+        if len(self._items[frame]) == 0:
+            # this frame is null
+            return QVariant()
         if parent.row() == 0:
             # pose data
             return self._items[frame][person].get(label)
