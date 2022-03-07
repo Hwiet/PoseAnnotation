@@ -32,22 +32,13 @@ class TestPose(unittest.TestCase):
         })
 
     def test_create_success(self):
-        pose = Pose({
+        pose = Pose({ # wrap object in a list
             "joints": [
                 { "name": 1, "position": [ 0, 0 ] },
                 { "name": 2, "position": [ 0, 1 ] },
             ],
             "confidence": 0.1
         }, self.validate_nested)
-
-    def test_create_success_reread(self):
-        pose = Pose([{ # wrap object in a list
-            "joints": [
-                { "name": 1, "position": [ 0, 0 ] },
-                { "name": 2, "position": [ 0, 1 ] },
-            ],
-            "confidence": 0.1
-        }], self.validate_nested)
 
     def test_create_fail(self):
         fixture_data = [
