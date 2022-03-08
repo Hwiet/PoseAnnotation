@@ -120,17 +120,19 @@ class TestPoseModel(unittest.TestCase):
         self.assertEqual(self.model.nextValidFrame(), 3)
 
     def test_pose_data(self):
-        index = self.model.pose(0)
+        poseIndex = self.model.pose(0)
+        frameIndex = self.model.index(3, 0, poseIndex)
         self.assertAlmostEqual(
-            self.model.frameData(3, 'confidence', index),
+            self.model.data(frameIndex, 'confidence'),
             0.34125325115
         )
 
     def test_joint_data(self):
-        index = self.model.joint(0, 0)
+        jointIndex = self.model.joint(0, 0)
+        frameIndex = self.model.index(3, 0, jointIndex)
         self.assertEqual(
-            self.model.frameData(3, 'name', index), 0)
+            self.model.data(frameIndex, 'name'), 0)
 
-    def test_joint_name(self):
+    def test_joint_label(self):
         index = self.model.joint(0, 0)
-        self.assertEqual('left wrist', self.model.jointName(index))
+        self.assertEqual('left wrist', self.model.jointLabel(index))
