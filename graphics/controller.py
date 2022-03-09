@@ -3,7 +3,7 @@ from PyQt5.QtCore import QPointF
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QGraphicsItem
 from functools import partial
-from typing import Dict, List
+from typing import Dict, List   
 
 
 class Controller(QObject):

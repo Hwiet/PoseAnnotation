@@ -8,6 +8,7 @@ pyqt5 = "*"
 jsonstream = "*"
 pandas = "*"
 opencv-python = "*"
+fastjsonschema = "*"
 
 [dev-packages]
 

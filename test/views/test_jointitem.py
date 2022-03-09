@@ -1,4 +1,4 @@
-from views import JointGraphicsItem
+from graphics import JointGraphicsItem
 from models import PoseModel
 
 import sys

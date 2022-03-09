@@ -27,10 +27,6 @@ class BaseData():
         self._data[key] = value
 
 class Pose(BaseData):
-    def isNull(self) -> bool:
-        """A pose is null if it has no joints"""
-        return "joints" in self._data
-
     def jointCount(self) -> int:
         return len(self["joints"])
 
@@ -56,8 +52,6 @@ class Pose(BaseData):
             JsonSchemaException: `data` is not valid.
         """
         super().__init__()
-        if data_ is None:
-            return # create null pose
         try:
             validate(data_)
             self.setJoints(data_)
