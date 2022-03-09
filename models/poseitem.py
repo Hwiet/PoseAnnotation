@@ -54,6 +54,8 @@ class PoseModelItem():
         return None
 
     def data(self, role):
+        if not self.isValid():
+            return None
         if isinstance(role, str):
             return self.ptr[role]
         if isinstance(role, int) and role >= Qt.UserRole+1:

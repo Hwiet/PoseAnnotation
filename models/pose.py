@@ -22,16 +22,16 @@ class PoseModel(QAbstractItemModel):
     """A Qt model for reading and storing pose data extracted from an
     image or video.
     """
-    def __init__(self, modelName: str=None, io: StringIO=None):
+    def __init__(self, scheme):
         super().__init__()
         self._data = []
         self._modelItems = []
         self._jointLabels = []
 
-        if modelName is not None:
-            self.setScheme(f'{modelName}_Pose.json')
-        if io is not None:
-            self.setUp(io)
+        self._setScheme(scheme)
+
+    def _setScheme(self, scheme):
+        self._validator = fastjsonschema.compile(scheme)
 
     def index(self, row, column=0, parent=QModelIndex()) -> QModelIndex:
         parentItem = parent.internalPointer()
@@ -72,20 +72,6 @@ class PoseModel(QAbstractItemModel):
         item.row = row
         item.column = column
         self._modelItems[row][column] = item
-
-    def setScheme(self, scheme):
-        self._validator = fastjsonschema.compile(scheme)
-
-    def setJointNames(self, stream):
-        """Set joint names.
-
-        model.setJointNames(open('<filename>'), 'r')
-
-        Args:
-            stream (StringIO): A text stream.
-        """
-        for line in stream:
-            self._jointLabels.append(line.strip())
 
     def setUp(self, stream) -> int:
         """Sets pose data
@@ -233,6 +219,10 @@ class PoseModel(QAbstractItemModel):
         if index.isValid():
             return index.row()-1
 
-    def jointLabel(self, index):
-        if index.isValid():
-            return self._jointLabels[index.row()-1]
+    def submit(self):
+        s = ''
+        for frame in self._data:
+            l = []
+            for pose in self._data[frame]:
+                l.append(pose.data())
+            s += json.JSONEncoder().encode(l)

@@ -32,7 +32,7 @@ class TestPose(unittest.TestCase):
         })
 
     def test_create_success(self):
-        pose = Pose({ # wrap object in a list
+        pose = Pose({
             "joints": [
                 { "name": 1, "position": [ 0, 0 ] },
                 { "name": 2, "position": [ 0, 1 ] },
