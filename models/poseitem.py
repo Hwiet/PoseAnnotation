@@ -1,7 +1,8 @@
 from PyQt5.QtCore import (
     Qt,
     QModelIndex,
-    QVariant
+    QVariant,
+    QPointF
 )
 
 class PoseModelItem():
@@ -57,6 +58,8 @@ class PoseModelItem():
         if not self.isValid():
             return None
         if isinstance(role, str):
+            if role == 'position':
+                return QPointF(*self.ptr[role])
             return self.ptr[role]
         if isinstance(role, int) and role >= Qt.UserRole+1:
             if self._keys[role] in self.ptr:
@@ -67,7 +70,10 @@ class PoseModelItem():
 
     def setData(self, value, role):
         if isinstance(role, str):
-            self.ptr[role]  = value
+            if role == 'position':
+                self.ptr[role] = value.toPointF()
+            else:
+                self.ptr[role] = value
             return True
         if isinstance(role, int) and role >= Qt.UserRole+1:
             if self._keys[role] in self.ptr:
