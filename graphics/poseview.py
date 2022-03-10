@@ -1,6 +1,9 @@
+from typing import List
+
 from PyQt5.QtGui import QKeySequence, QBitmap, QPainter, QPen
 
 from PyQt5.QtWidgets import (
+    QGraphicsItem,
     QGraphicsItemGroup,
     QGraphicsScene,
     QGraphicsView
@@ -27,7 +30,6 @@ from math import pi
 from models import PoseModel
 from . import (
     JointItem,
-    ControlledItem
 )
 
 
@@ -50,9 +52,9 @@ class GraphicsScene(QGraphicsScene):
             grabber.submitPos(QVariant(newPos), frame)
             grabber.emit('positionChanged', grabber, newPos)
 
-class PoseView(QGraphicsView, ControlledItem):
-    setLabelsVisible = pyqtSignal(bool)
-    ready = pyqtSignal(QRect)
+class PoseView(QGraphicsView):
+    modelReady = pyqtSignal()
+    viewReady = pyqtSignal(QRect)
 
     def __init__(self, model, keypoints, chain):
         """_summary_
@@ -78,15 +80,16 @@ class PoseView(QGraphicsView, ControlledItem):
         self._parentItem.nativeSizeChanged.connect(self.setSize)
 
     def setModel(self, model, keypoints, chain, frame=0):
+        point = {}
         for i in range(model.poseCount()):
             for j in range(model.jointCount()):
                 jointIndex = model.joint(j, i)
-                self._setJoint(jointIndex, keypoints[j], frame)
+                point[keypoints[j]] = JointItem(jointIndex, keypoints[j], self._parentItem)
 
-    def _setJoint(self, index, label, frame):
-        print('1')
-        joint = JointItem(index, label)
-        joint.setParentItem(self._parentItem)
+        self.modelReady.emit()
+
+    def items(self) -> List[QGraphicsItem]:
+        return self._parentItem.childItems()
 
     def setScene(self, scene):
         super().setScene(scene)
@@ -113,7 +116,7 @@ class PoseView(QGraphicsView, ControlledItem):
     def setSize(self, size):
         self._parentItem.setSize(size)
         self.fitInView()
-        self.ready.emit(QRect(QPoint(), self._parentItem.nativeSize().toSize()))
+        self.viewReady.emit(QRect(QPoint(), self._parentItem.nativeSize().toSize()))
 
     def zoomOut(self):
         dz = 1.1
