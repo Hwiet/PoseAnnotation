@@ -1,6 +1,8 @@
 from typing import List
 
-from PyQt5.QtGui import QKeySequence, QBitmap, QPainter, QPen
+from PyQt5.QtGui import (
+    QPainterPath
+)
 
 from PyQt5.QtWidgets import (
     QGraphicsItem,
@@ -30,6 +32,7 @@ from math import pi
 from models import PoseModel
 from . import (
     JointItem,
+    EdgeItem
 )
 
 
@@ -81,14 +84,25 @@ class PoseView(QGraphicsView):
 
     def setModel(self, model, keypoints, chain, frame=0):
         point = {}
+        pointGroup = self.scene().createItemGroup([])
+        pointGroup.setParentItem(self._parentItem)
         for i in range(model.poseCount()):
             for j in range(model.jointCount()):
                 jointIndex = model.joint(j, i)
-                point[keypoints[j]] = JointItem(jointIndex, keypoints[j], self._parentItem)
+                item = JointItem(jointIndex, keypoints[j])
+                pointGroup.addToGroup(item)
+                point[keypoints[j]] = item
+
+        for c in chain:
+            item = EdgeItem(point[c[0]], point[c[1]], self._parentItem)
+            item.setZValue(pointGroup.zValue())
+            item.stackBefore(pointGroup)
+        self.scene().destroyItemGroup(pointGroup)
 
         self.modelReady.emit()
 
     def items(self) -> List[QGraphicsItem]:
+        print(self._parentItem.childItems())
         return self._parentItem.childItems()
 
     def setScene(self, scene):

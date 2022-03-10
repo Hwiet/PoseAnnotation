@@ -21,16 +21,19 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtGui import (
     QPen,
     QBrush,
-    QFont
+    QFont,
+    QTransform
 )
 
 class JointItem(QGraphicsObject):
     LABEL_OFFSET = QPointF(12, -3)
     POINT_WIDTH = 7
-    positionChanged = pyqtSignal(QPointF)
 
-    def __init__(self, index, label, parent):
+    positionChanged = pyqtSignal(QGraphicsItem, QPointF)
+
+    def __init__(self, index, label, parent=None):
         super().__init__(parent)
+        self.POS_OFFSET = QPointF( *([self.POINT_WIDTH/2]*2) )
 
         ## Model and index
 
@@ -47,8 +50,7 @@ class JointItem(QGraphicsObject):
 
         ## Child items
 
-        self._createHandleItem()
-        self._createLabelItem(label)
+        self._createHandleItem(label)
 
     ## We do not want to draw this item, but paint() and boundingRect() still needs to be implemented.
     ## Give null definitions for both.
@@ -58,23 +60,21 @@ class JointItem(QGraphicsObject):
 
     def boundingRect(self):
         return QRectF()
-        
-    def _createLabelItem(self, text):
-        label = QGraphicsSimpleTextItem(text, self)
+
+    def _createHandleItem(self, label):
+        t = QTransform()
+        t.translate(-self.POS_OFFSET.x(), -self.POS_OFFSET.y())
+
+        handle = QGraphicsRectItem(0, 0, self.POINT_WIDTH, self.POINT_WIDTH, self)
+        handle.setPos(QPointF())  
+        handle.setTransform(t)
+        handle.setBrush(QBrush(Qt.green, Qt.SolidPattern))
+        handle.setFlags(QGraphicsItem.ItemIgnoresTransformations)
+
+        label = QGraphicsSimpleTextItem(label, handle)
         label.setPos(self.LABEL_OFFSET)
         label.setFont(QFont())
         label.setBrush(QBrush(Qt.green, Qt.SolidPattern))
-        label.setFlags(
-            QGraphicsItem.ItemIgnoresTransformations
-        )
-
-    def _createHandleItem(self):
-        self._handle = QGraphicsRectItem(0, 0, self.POINT_WIDTH, self.POINT_WIDTH, self)
-        self._handle.setPos(QPointF())  
-        self._handle.setBrush(QBrush(Qt.green, Qt.SolidPattern))
-        self._handle.setFlags(
-            QGraphicsItem.ItemIgnoresTransformations
-        )
 
     def _index(self):
         """Returns the QModelIndex of this item."""
