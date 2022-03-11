@@ -1,11 +1,11 @@
 from collections.abc import Iterable
 
 def linear(from_, to_, progress=0):
-    """Linearly interpolate between two values. If 
+    """Linearly interpolate between two values.
 
     Args:
-        from_ (float)
-        to_ (float)
+        from_ (Union[float|Iterable])
+        to_ (Union[float|Iterable)
         progress (float, optional): A float between 0 and 1. Defaults to 0.
     """
     if progress > 1 or progress < 0:
