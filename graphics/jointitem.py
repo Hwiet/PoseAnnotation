@@ -105,6 +105,7 @@ class JointItem(QGraphicsObject):
                 return nextPos
             if nextPos is None:
                 return prevPos
+        return pos
 
     def submitPos(self, pos, frame) -> bool:
         """Changes the position of the joint at frame and update model
