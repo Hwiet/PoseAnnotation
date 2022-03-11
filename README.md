@@ -20,4 +20,7 @@ pipenv run python -m pose_annotation
 
 ## Known issues
 
-- *Temporary, will fix*: The app crashes when you try to move a keypoint.
+- *Temporary, will fix*:
+  - The app crashes when you try to move a keypoint.
+  - Saving is not implemented yet.
+- *Windows only*: If you encounter a codec issue, you may need to install a codec pack such as [LAV Filters](https://github.com/Nevcairiel/LAVFilters/releases).
