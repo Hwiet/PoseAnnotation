@@ -1,5 +1,6 @@
 from PyQt5.QtCore import (
     Qt,
+    pyqtSignal,
     pyqtSlot
 )
 from PyQt5.QtWidgets import (
@@ -21,8 +22,8 @@ class ImportDialog(QDialog):
         annotationButton = QPushButton('Import annotation...', self)
         self.mediaLabel = QLabel('No media file selected.', self)
         self.annotationLabel = QLabel('No annotation file selected.', self)
-        self.mediaFilename = ''
-        self.annotationFilename = ''
+        self._mediaFilename = ''
+        self._annotationFilename = ''
         buttonBox = QDialogButtonBox( QDialogButtonBox.Cancel | QDialogButtonBox.Ok, Qt.Horizontal, self )
 
         self.setLayout( QGridLayout() )
@@ -36,27 +37,40 @@ class ImportDialog(QDialog):
 
         mediaButton.clicked.connect(self.importMedia)
         annotationButton.clicked.connect(self.importAnnotation)
-        # buttonBox.accepted.connect(self.submit)
-        # buttonBox.rejected.connect(lambda: self.close())
+
+        buttonBox.accepted.connect(self.accepted)
+        buttonBox.rejected.connect(self.rejected)
+
+        self.accepted.connect(self.close)
+        self.rejected.connect(self.close)
+
+    def open(self, handler):
+        self.accepted.connect(handler)
+        super().open()
 
     @pyqtSlot()
     def importMedia(self) -> str:
-        self.mediaFilename =  QFileDialog.getOpenFileName(
+        self._mediaFilename =  QFileDialog.getOpenFileName(
             parent=self,
             caption='Select media',
-            filter='Images (*.png *.jpg);;Videos (*.mp4)'
-        )
-        self.mediaLabel.setText(self.mediaFilename[0])
+            filter='Videos (*.mp4);;Images (*.png *.jpg)'
+        )[0]
+        self.mediaLabel.setText(self._mediaFilename)
 
     @pyqtSlot()
     def importAnnotation(self) -> str:
-        self.annotationFilename = QFileDialog.getOpenFileName(
+        self._annotationFilename = QFileDialog.getOpenFileName(
             parent=self,
             caption='Select annotation',
             filter='Text files (*.txt)'
-        )
-        self.annotationLabel.setText(self.annotationFilename[0])
+        )[0]
+        self.annotationLabel.setText(self._annotationFilename)
 
+    def mediaFilename(self) -> str:
+        return self._mediaFilename
+
+    def annotationFilename(self) -> str:
+        return self._annotationFilename
 
 if __name__ == '__main__':
     import sys

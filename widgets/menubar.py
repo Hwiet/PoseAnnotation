@@ -46,16 +46,18 @@ class MenuBar(QMenuBar):
         fileMenu.addAction(
             QIcon(),
             'Save',
+            lambda: self.save.emit()
         )
         fileMenu.addAction(
             QIcon(),
-            'Open',
-            
-            # QKeySequence.Open
+            'Import',
+            lambda: self.import_.emit(),
+            QKeySequence.Open
         )
         fileMenu.addAction(
             QIcon(),
-            'Revert'
+            'Revert',
+            lambda: self.revert.emit()
         )
         fileMenu.addAction(
             QIcon(),
