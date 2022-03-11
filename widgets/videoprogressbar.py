@@ -6,11 +6,15 @@
 # QStyleOptionSlider - The QStyleOptionSlider class is used to describe the
 # parameters needed for drawing a slider.
 
-from PyQt5.QtCore import *
-from PyQt5.QtWidgets import *
-from PyQt5.QtGui import *
-from PyQt5.QtMultimedia import QMediaPlayer
+from PyQt5.QtCore import (
+    Qt,
+    pyqtSlot
+)
 
+from PyQt5.QtWidgets import (
+    QSlider,
+    QToolBar
+)
 
 class VideoProgressBar(QSlider):
     def __init__(self, parent=None):
@@ -24,7 +28,6 @@ class VideoProgressBar(QSlider):
     @pyqtSlot(int)
     def setRange(self, duration):
         super().setRange(0, duration)
-
 
 class VideoProgressToolBar(QToolBar):
     def __init__(self, parent=None):

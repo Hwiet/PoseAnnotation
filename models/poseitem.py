@@ -11,7 +11,7 @@ class PoseModelItem():
         Args:
             ptr: Reference to data
         """
-        super().__init__()
+        super().__init__()  
         self._parent = parent
         self._items = []
         if ptr is not None:
@@ -50,8 +50,11 @@ class PoseModelItem():
         self._items.append([item])
 
     def child(self, row, column=0):
-        if self._items != []:
-            return self._items[row][column]
+        try:
+            if self._items != []:
+                return self._items[row][column]
+        except IndexError as e:
+            raise IndexError(f'list index out of range (row {row}, column {column})') from e
         return None
 
     def data(self, role):
