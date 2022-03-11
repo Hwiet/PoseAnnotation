@@ -45,18 +45,7 @@ class ItemGroup(QGraphicsItemGroup):
     pass
 
 
-class GraphicsScene(QGraphicsScene):
-    def mouseMoveEvent(self, event):
-        QGraphicsScene.mouseMoveEvent(self, event)
-
-        grabber = self.mouseGrabberItem()
-        if isinstance(grabber, JointItem):
-            newPos = event.scenePos()
-            grabber.submitPos(QVariant(newPos), frame)
-            grabber.emit('positionChanged', grabber, newPos)
-
 class PoseView(QGraphicsView):
-    modelReady = pyqtSignal()
     viewReady = pyqtSignal(QRect)
 
     def __init__(self, model, keypoints, chain):
@@ -71,7 +60,7 @@ class PoseView(QGraphicsView):
         super().__init__()
 
         videoItem = VideoItem()
-        scene = GraphicsScene()
+        scene = QGraphicsScene()
         self._parentItem = videoItem
 
         scene.addItem(videoItem)
@@ -97,13 +86,11 @@ class PoseView(QGraphicsView):
             item = EdgeItem(point[c[0]], point[c[1]], self._parentItem)
             item.setZValue(pointGroup.zValue())
             item.stackBefore(pointGroup)
+        self._points = pointGroup.childItems()
         self.scene().destroyItemGroup(pointGroup)
 
-        self.modelReady.emit()
-
     def items(self) -> List[QGraphicsItem]:
-        print(self._parentItem.childItems())
-        return self._parentItem.childItems()
+        return self._points
 
     def setScene(self, scene):
         super().setScene(scene)
