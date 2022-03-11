@@ -10,8 +10,7 @@ import jsonstream
 class TestPoseModel(unittest.TestCase):
     def setUp(self):
         self.app = QApplication(sys.argv)
-        self.model = PoseModel()
-        self.model.setScheme({
+        self.model = PoseModel({
             "type": "object",
             "properties": {
                 "joints": {
@@ -32,7 +31,6 @@ class TestPoseModel(unittest.TestCase):
                 }
             }
         })
-        self.model.setJointNames(StringIO('left wrist\nright wrist'))
         self.model.setUp(StringIO("""
             []
             []
@@ -84,9 +82,8 @@ class TestPoseModel(unittest.TestCase):
             ]"""))
 
     def test_set_up_success_null(self):
-        model = PoseModel()
         io = StringIO("[]")
-        self.assertEqual(model.setUp(io), 1)
+        self.assertEqual(self.model.setUp(io), 1)
 
     def test_frame_count(self):
         self.assertEqual(self.model.frameCount(), 8)
@@ -132,7 +129,3 @@ class TestPoseModel(unittest.TestCase):
         frameIndex = self.model.index(3, 0, jointIndex)
         self.assertEqual(
             self.model.data(frameIndex, 'name'), 0)
-
-    def test_joint_label(self):
-        index = self.model.joint(0, 0)
-        self.assertEqual('left wrist', self.model.jointLabel(index))
