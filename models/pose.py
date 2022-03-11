@@ -212,8 +212,9 @@ class PoseModel(QAbstractItemModel):
         if index.isValid():
             item = index.internalPointer()
             if not item.isValid():
-                item.ptr = self._data[item.parent().row][item.column]
-                return item.setData(value, role)
+                item.ptr = self._data[item.parent().row][item.parent().column]
+            return item.setData(value, role)
+        return False
 
     def jointName(self, index):
         if index.isValid():

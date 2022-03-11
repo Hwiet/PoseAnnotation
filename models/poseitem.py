@@ -71,7 +71,7 @@ class PoseModelItem():
     def setData(self, value, role):
         if isinstance(role, str):
             if role == 'position':
-                self.ptr[role] = value.toPointF()
+                self.ptr[role] = [value.x(), value.y()]
             else:
                 self.ptr[role] = value
             return True

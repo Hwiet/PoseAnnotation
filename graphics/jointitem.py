@@ -25,6 +25,16 @@ from PyQt5.QtGui import (
     QTransform
 )
 
+class Grabber(QGraphicsRectItem):
+    def mousePressEvent(self, event):
+        pass
+
+    def mouseMoveEvent(self, event):
+        self.parentItem().setPos(event.pos())
+
+    def mouseReleaseEvent(self, event):
+        self.parentItem().submitPos(event.pos(), 0)
+
 class JointItem(QGraphicsObject):
     LABEL_OFFSET = QPointF(12, -3)
     POINT_WIDTH = 7
@@ -44,8 +54,7 @@ class JointItem(QGraphicsObject):
 
         self.setPos(self.posAt(0))
         self.setFlags(
-            QGraphicsItem.ItemIsMovable
-            | QGraphicsItem.ItemHasNoContents
+            QGraphicsItem.ItemHasNoContents
         )
 
         ## Child items
@@ -61,11 +70,15 @@ class JointItem(QGraphicsObject):
     def boundingRect(self):
         return QRectF()
 
+    def setPos(self, pos):
+        super().setPos(pos)
+        self.positionChanged.emit(self, pos)
+
     def _createHandleItem(self, label):
         t = QTransform()
         t.translate(-self.POS_OFFSET.x(), -self.POS_OFFSET.y())
 
-        handle = QGraphicsRectItem(0, 0, self.POINT_WIDTH, self.POINT_WIDTH, self)
+        handle = Grabber(0, 0, self.POINT_WIDTH, self.POINT_WIDTH, self)
         handle.setPos(QPointF())  
         handle.setTransform(t)
         handle.setBrush(QBrush(Qt.green, Qt.SolidPattern))
@@ -75,6 +88,8 @@ class JointItem(QGraphicsObject):
         label.setPos(self.LABEL_OFFSET)
         label.setFont(QFont())
         label.setBrush(QBrush(Qt.green, Qt.SolidPattern))
+
+        self._labelItem = label
 
     def _index(self):
         """Returns the QModelIndex of this item."""
