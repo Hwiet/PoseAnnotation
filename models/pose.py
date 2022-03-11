@@ -11,6 +11,7 @@ import fastjsonschema
 from io import StringIO
 
 from PyQt5.QtCore import (
+    pyqtSlot,
     Qt,
     QVariant,
     QModelIndex,
@@ -220,10 +221,24 @@ class PoseModel(QAbstractItemModel):
         if index.isValid():
             return index.row()-1
 
-    def submit(self):
+    def toJSON(self):
         s = ''
         for frame in self._data:
             l = []
             for pose in self._data[frame]:
                 l.append(pose.data())
             s += json.JSONEncoder().encode(l)
+        return s
+
+    @pyqtSlot()
+    def submit(self) -> bool:
+        try:
+            self.toJSON()
+        except:
+            print('Cannot save data due to a critical error', file=sys.stderr)
+            return False
+        return True
+
+    @pyqtSlot()
+    def revert(self) -> None:
+        pass
