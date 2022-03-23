@@ -31,8 +31,8 @@ class EdgeItem(QGraphicsObject):
         self._from = from_
         self._to = to_
         
-        self._p1 = QPointF()
-        self._p2 = QPointF()
+        self._p1 = from_.pos()
+        self._p2 = to_.pos()
         
         #  Cosmetic pens are used to draw strokes that have a constant
         #  width regardless of any transformations applied to the

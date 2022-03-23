@@ -30,10 +30,10 @@ class Grabber(QGraphicsRectItem):
         pass
 
     def mouseMoveEvent(self, event):
-        self.parentItem().setPos(event.pos())
+        self.parentItem().setPos(self.parentItem().pos() + event.pos())
 
     def mouseReleaseEvent(self, event):
-        self.parentItem().submitPos(event.pos(), 0)
+        pass
 
 class JointItem(QGraphicsObject):
     LABEL_OFFSET = QPointF(12, -3)
@@ -82,7 +82,11 @@ class JointItem(QGraphicsObject):
         handle.setPos(QPointF())  
         handle.setTransform(t)
         handle.setBrush(QBrush(Qt.green, Qt.SolidPattern))
-        handle.setFlags(QGraphicsItem.ItemIgnoresTransformations)
+        handle.setFlags(
+            QGraphicsItem.ItemIgnoresTransformations
+            | QGraphicsItem.ItemIsMovable
+            | QGraphicsItem.ItemSendsScenePositionChanges
+        )
 
         label = QGraphicsSimpleTextItem(label, handle)
         label.setPos(self.LABEL_OFFSET)
