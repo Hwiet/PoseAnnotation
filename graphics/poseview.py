@@ -36,6 +36,43 @@ from . import (
 )
 
 
+class MouseZoom(QGraphicsView):
+    __speed = 0.001
+
+    def __init__(self):
+        super().__init__()
+        self.setTransformationAnchor(QGraphicsView.NoAnchor)
+        self.setResizeAnchor(QGraphicsView.NoAnchor)
+
+    def __zoomIn(self, delta):
+        self.scale(*([1 + (self.__speed * delta)]*2))
+
+    def __zoomOut(self, delta):
+        self.scale(*([1 - (self.__speed * delta)]*2))
+
+    def wheelEvent(self, event):
+        delta = event.angleDelta().y()
+        oldPos = self.mapToScene(event.pos())
+
+        if delta > 0:
+            self.__zoomIn(delta)
+        else:
+            self.__zoomOut(abs(delta))
+
+        newPos = self.mapToScene(event.pos())
+
+        delta = newPos - oldPos
+        self.translate(delta.x(), delta.y())
+
+class Pan(QGraphicsView):
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Space:
+            self.setDragMode(QGraphicsView.ScrollHandDrag)
+    
+    def keyReleaseEvent(self, event):
+        if event.key() == Qt.Key_Space and not event.isAutoRepeat():
+            self.setDragMode(QGraphicsView.NoDrag)
+
 class VideoItem(QGraphicsVideoItem):
     def __init__(self):
         super().__init__()
@@ -45,7 +82,7 @@ class ItemGroup(QGraphicsItemGroup):
     pass
 
 
-class PoseView(QGraphicsView):
+class PoseView(MouseZoom, Pan):
     viewReady = pyqtSignal(QRect)
 
     def __init__(self, model, keypoints, chain):
@@ -104,15 +141,6 @@ class PoseView(QGraphicsView):
     def setLabelsVisible(self, visible):
         self.emit('setLabelsVisible', visible)
 
-    def wheelEvent(self, event):
-        dz = 0.2
-        degrees = event.angleDelta().y() / 8
-        rad = degrees * pi / 180
-        x = rad * dz + 1
-
-        self.scale(x, x)
-        self.centerOn(event.pos())
-
     @pyqtSlot(QSizeF)
     def setSize(self, size):
         self._parentItem.setSize(size)
@@ -127,14 +155,6 @@ class PoseView(QGraphicsView):
     def zoomIn(self):
         dz = 1.1
         self.scale(dz, dz)
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Space:
-            self.setDragMode(QGraphicsView.ScrollHandDrag)
-    
-    def keyReleaseEvent(self, event):
-        if event.key() == Qt.Key_Space and not event.isAutoRepeat():
-            self.setDragMode(QGraphicsView.NoDrag)
 
     def _center(self, size1, size2):
         xOffset = (size1.width() - size2.width()) / 2
