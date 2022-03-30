@@ -34,6 +34,7 @@
         [ "right_elbow", "right_wrist" ],
         [ "right_shoulder", "right_hip" ],
         [ "right_hip", "right_knee" ],
-        [ "right_knee", "right_ankle" ]
+        [ "right_knee", "right_ankle" ],
+        [ "left_hip", "right_hip" ]
     ]
 }
