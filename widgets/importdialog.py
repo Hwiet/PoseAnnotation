@@ -1,7 +1,8 @@
 from PyQt5.QtCore import (
     Qt,
     pyqtSignal,
-    pyqtSlot
+    pyqtSlot,
+    QSettings
 )
 from PyQt5.QtWidgets import (
     QDialog,
@@ -16,6 +17,7 @@ from PyQt5.QtWidgets import (
 class ImportDialog(QDialog):
     def __init__(self):
         super().__init__()
+        self.settings = QSettings('MyCompany', 'Pose Annotation')
         
         mediaButton = QPushButton('Import media...', self)
         mediaButton.setDefault(True)
@@ -52,6 +54,7 @@ class ImportDialog(QDialog):
     def importMedia(self) -> str:
         self._mediaFilename =  QFileDialog.getOpenFileName(
             parent=self,
+            directory=self.settings.value('Files/Media directory'),
             caption='Select media',
             filter='Videos (*.mp4);;Images (*.png *.jpg)'
         )[0]
@@ -61,6 +64,7 @@ class ImportDialog(QDialog):
     def importAnnotation(self) -> str:
         self._annotationFilename = QFileDialog.getOpenFileName(
             parent=self,
+            directory=self.settings.value('Files/Annotation directory'),
             caption='Select annotation',
             filter='Text files (*.txt)'
         )[0]

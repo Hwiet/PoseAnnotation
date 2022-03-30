@@ -1,5 +1,6 @@
 import sys
 import json
+from os.path import abspath, dirname
 
 from widgets import (
     MainWindow,
@@ -20,7 +21,8 @@ from multimedia import MediaPlayer
 from PyQt5.QtWidgets import QApplication  
 
 from PyQt5.QtCore import (
-    Qt
+    Qt,
+    QSettings
 )
 
 class App(QApplication):
@@ -28,6 +30,10 @@ class App(QApplication):
 
 if __name__ == '__main__':
     def import_(mediaFilename, annotationFilename):
+        settings.beginGroup("Files");
+        settings.setValue("Media directory", dirname(abspath(mediaFilename)))
+        settings.setValue("Annotation directory", dirname(abspath(annotationFilename)))
+
         # TODO allow selection of supported models by the user, and not
         # hardcode model
         with open("supported_models/PoseNet/schema.json") as fp:
@@ -67,6 +73,9 @@ if __name__ == '__main__':
 
 
     app = App(sys.argv)
+    app.setOrganizationName('MyCompany')
+    app.setApplicationName('Pose Annotation')
+    settings = QSettings()
 
     window = MainWindow()
     menubar = MenuBar()
