@@ -116,6 +116,7 @@ class PoseView(QGraphicsView):
     @pyqtSlot(QSizeF)
     def setSize(self, size):
         self._parentItem.setSize(size)
+        self.scene().setSceneRect(QRectF(self._center(size, size*10), size*10))
         self.fitInView()
         self.viewReady.emit(QRect(QPoint(), self._parentItem.nativeSize().toSize()))
 
@@ -126,3 +127,16 @@ class PoseView(QGraphicsView):
     def zoomIn(self):
         dz = 1.1
         self.scale(dz, dz)
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_Space:
+            self.setDragMode(QGraphicsView.ScrollHandDrag)
+    
+    def keyReleaseEvent(self, event):
+        if event.key() == Qt.Key_Space and not event.isAutoRepeat():
+            self.setDragMode(QGraphicsView.NoDrag)
+
+    def _center(self, size1, size2):
+        xOffset = (size1.width() - size2.width()) / 2
+        yOffset = (size1.height() - size2.height()) / 2
+        return QPointF(xOffset, yOffset)
