@@ -9,6 +9,8 @@ import json
 import jsonstream
 import fastjsonschema
 from io import StringIO
+import tempfile
+import python_jsonschema_objects as pjs
 
 from PyQt5.QtCore import (
     pyqtSlot,
@@ -18,227 +20,129 @@ from PyQt5.QtCore import (
     QAbstractItemModel
 )
 
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
-class PoseModel(QAbstractItemModel):
+class PoseModel(QStandardItemModel):
     """A Qt model for reading and storing pose data extracted from an
     image or video.
     """
+    _poseCls = None
+    _jointCls = None
+    _jointCount = 17
+    
     def __init__(self, scheme):
         super().__init__()
-        self._data = []
-        self._modelItems = []
-        self._jointLabels = []
-
         self._setScheme(scheme)
 
     def _setScheme(self, scheme):
-        self._validator = fastjsonschema.compile(scheme)
-
-    def index(self, row, column=0, parent=QModelIndex()) -> QModelIndex:
-        parentItem = parent.internalPointer()
-        if parentItem is None:
-            return self.createIndex(row, column, self._modelItems[row][column])
-        return self.createIndex(row, column, parentItem.child(row))
-
-    def parent(self, index) -> QModelIndex:
-        if index.isValid():
-            parent = index.internalPointer().parent()
-            return self.createIndex(index.row(), index.column(), parent)
-        return QModelIndex()
-
-    def rowCount(self, parent=QModelIndex()):
-        return len(self._modelItems)
-
-    def columnCount(self, parent=QModelIndex()):
-        return len(self._modelItems[0])
-
-    def item(self, row, column):
-        return self._modelItems[row][column]
-
-    def setItem(self, row, column, item: PoseModelItem):
-        """Sets the item for the given row and column to item. The model
-        takes ownership of the item. If necessary, the row count and
-        column count are increased to fit the item. The previous item at
-        the given location (if there was one) is deleted"""
-        if len(self._modelItems)-1 < row:
-            diff = row+1 - len(self._modelItems)
-            self._modelItems.extend( [[]] * diff )
-        if len(self._modelItems[row])-1 < column:
-            diff = column+1 - len(self._modelItems[row])
-            for i in range(diff):
-                emptyItem = PoseModelItem()
-                emptyItem.row = row
-                emptyItem.column = len(self._modelItems[row])
-                self._modelItems[row].append(emptyItem)
-        item.row = row
-        item.column = column
-        self._modelItems[row][column] = item
+        builder = pjs.ObjectBuilder(json.load(scheme)) # pass in both pose scheme and joint scheme
+        ns = builder.build_classes(standardize_names=False, named_only=True)
+        self._poseCls = ns.PoseNetPose
+        self._jointCls = ns.Joint
 
     def setUp(self, stream) -> int:
-        """Sets pose data
-
-        Args:
-            stream (StringIO): File-like object containing one or more
-        JSON documents.
-
-        Returns:
-            int: Number of frames or snapshots added.
-        """
-        # populate data
-
-        poseCount = 0
-        jointCount = 0
-
-        self._data.clear()
         it = jsonstream.load(stream)
-        new_items = 0
+
         try:
+            currFrame = -1
+            emptyFrames = [] # indices
             while True:
-                data = [Pose(obj, self._validator) for obj in next(it)]
+                poses = next(it)
+                currFrame += 1
 
-                if data != []: # get number used to create model later
-                    poseCount = len(data)
-                    jointCount = data[0].jointCount()
+                if poses == []:
+                    # if self.rowCount() == 0:
+                    #     emptyFrames.append(currFrame)
+                    continue
 
-                self._data.append(data)
-                new_items += 1
+                # if len(emptyFrames) > 0:
+                #     for i in range(self.rowCount()):
+                #         for j in range(self.columnCount()):
+                #             for k in emptyFrames:
+                #                 self.item(i, j).setChild(k, QStandardItem())
+
+                column = 0 # columns = poses
+                for p in poses:
+                    pose = self._poseCls(**p)
+
+                    # clear out integers in list of joints
+                    pose.joints = [i for i in pose.joints if type(i) is dict]
+
+                    # sort the joints by their index
+                    pose.joints = sorted(pose.joints, key=lambda a: a['name'])
+
+                    row = 0
+                    for j in pose.joints:
+                        currItem = self.item(row, column)
+
+                        if currItem is None:
+                            self.setItem(row, column, QStandardItem())
+                            currItem = self.item(row, column)
+
+                        currItem.setData(j['name'], Qt.DisplayRole)
+
+                        currChild = currItem.child(currFrame)
+                        if currChild is None:
+                            currItem.setChild(currFrame, QStandardItem())
+                            currChild = currItem.child(currFrame)
+
+                        currChild.setData(j, Qt.UserRole+1)
+                        currChild.setData(pose, Qt.UserRole+2)
+                        row += 1
+
+                    column += 1                    
         except StopIteration:
-            pass
-        except json.decoder.JSONDecodeError as e:
-            self._data.clear()
-            raise e
+            # for i in range(self.columnCount()):
+            #     self.sort(i)
 
-        # set up model items
-        for row in range(jointCount+1):
-            for column in range(poseCount):
-                if row == 0:
-                    self.setItem(row, column, PoseModelItem())
-                else:
-                    self.setItem(row, column, PoseModelItem())
+            # print(self.itemData(self.index(3, 0, self.index(15, 0))))
+            print(self.item(15).child(3).data())
+            # joint 0 for 
+            # index = self.index(3, 0, self.index(15, 0))
+            # print(index.isValid())
+            
+            # data = index.internalPointer.data()
+            # print(data)
+    # def frameCount(self):
+    #     return self.rowCount()
 
-        for i in range(len(self._data)): # 8
-            for j in range(poseCount): # 2
-                if len(self._data[i]) == 0:
-                    self.item(0, j).appendRow(PoseItem(None, self.item(0, j)))
-                else:
-                    self.item(0, j).appendRow(PoseItem(self._data[i][j], self.item(0, j)))
+    # def poseCount(self):
+    #     return self.columnCount()
 
-                # set joint frames
-                if len(self._data[i]) == 0:
-                    for k in range(jointCount):
-                        self.item(k+1, j).appendRow(JointItem(None, self.item(k+1, j)))
-                else:
-                    for k in range(jointCount):
-                        jointDict = self._data[i][j].joint(k)
-                        self.item(k+1, j).appendRow(JointItem(jointDict, self.item(k+1, j)))
+    # def getPosition(self, row, column):
+    #     self.item(row, column).data().
 
-        return new_items
+    # def previousValidFrame(self, n=0):
+    #     if self.rowCount() == 1:
+    #         return -1
 
-    def jointCount(self):
-        aPose = self._data[self.nextValidFrame()][0]
-        return aPose.jointCount()
+    #     if 0 <= n < self.rowCount(): 
+    #         for i in reversed(range(0, n+1)):
+    #             if self.itemData()
+    #             frame = self._data[i]
+    #             if len(frame) > 0: return i
+    #     return -1 
 
-    def poseCount(self) -> int:
-        """The number of detected poses (one for each individual) in the
-        image or video."""
-        aFrame = self._data[self.nextValidFrame()]
-        return len(aFrame)
 
-    def frameCount(self) -> int:
-        """The number of frames or snapshots. This is 1 if the data
-        originated from an image."""
-        return len(self._data)
+    # def nextValidFrame(self, n=0) -> int:
+    #     """Return the next frame that contains pose data. This is useful
+    #     for when not every frame has been annotated. If no valid frame
+    #     exists after frame `n`, -1 is returned.
 
-    def _isValidFrameIndex(self, n) -> bool:
-        return 0 <= n < len(self._data)
+    #     Args:
+    #         n (int, optional): The frame from which to begin searching.
+    #     Defaults to 0.
+    #     """
+    #     if self._isImage():
+    #         return -1
+    #     if not self._isValidFrameIndex(n):
+    #         raise IndexError
+    #         return
 
-    def _isImage(self) -> bool:
-        return self.frameCount() == 1
+    #     for i in range(n, len(self._data)):
+    #         frame = self._data[i]
+    #         if len(frame) > 0: return i
+    #     return -1
 
-    def previousValidFrame(self, n=0):
-        if self._isImage():
-            return -1
-        if not self._isValidFrameIndex(n):
-            raise IndexError
-            return
-
-        for i in reversed(range(0, n+1)):
-            frame = self._data[i]
-            if len(frame) > 0: return i
-        return -1
-
-    def nextValidFrame(self, n=0) -> int:
-        """Return the next frame that contains pose data. This is useful
-        for when not every frame has been annotated. If no valid frame
-        exists after frame `n`, -1 is returned.
-
-        Args:
-            n (int, optional): The frame from which to begin searching.
-        Defaults to 0.
-        """
-        if self._isImage():
-            return -1
-        if not self._isValidFrameIndex(n):
-            raise IndexError
-            return
-
-        for i in range(n, len(self._data)):
-            frame = self._data[i]
-            if len(frame) > 0: return i
-        return -1
-
-    def pose(self, person) -> QModelIndex:
-        row = 0
-        column = person
-        return self.createIndex(row, column, self.item(row, column))
-
-    def joint(self, n, person) -> QModelIndex:
-        row = n+1
-        column = person
-        return self.createIndex(row, column, self.item(row, column))
-
-    def frame(self, n, index):
-        if index.isValid():
-            item = index.internalPointer()
-            return self.createIndex(n, 0, item.child(n))
-        return QModelIndex()
-
-    def data(self, index, role):
-        if index.isValid():
-            item = index.internalPointer()
-            return item.data(role)
-        return None
-
-    def setData(self, index, value, role) -> bool:
-        if index.isValid():
-            item = index.internalPointer()
-            if not item.isValid():
-                item.ptr = self._data[item.parent().row][item.parent().column]
-            return item.setData(value, role)
-        return False
-
-    def jointName(self, index):
-        if index.isValid():
-            return index.row()-1
-
-    def toJSON(self):
-        s = ''
-        for frame in self._data:
-            l = []
-            for pose in self._data[frame]:
-                l.append(pose.data())
-            s += json.JSONEncoder().encode(l)
-        return s
-
-    @pyqtSlot()
-    def submit(self) -> bool:
-        try:
-            self.toJSON()
-        except:
-            print('Cannot save data due to a critical error', file=sys.stderr)
-            return False
-        return True
-
-    @pyqtSlot()
-    def revert(self) -> None:
-        pass
+    # def _isEmptyItem(self, row, column):
+    #     return not self.data()

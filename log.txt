@@ -1,0 +1,434 @@
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint
+DEBUG:python_jsonschema_objects.classbuilder:Building object #/definitions/joint
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint.cell
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/cell_<anonymous>
+DEBUG:python_jsonschema_objects.classbuilder:Building object #/definitions/joint/cell_<anonymous>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint/cell_<anonymous>.yIndex
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/cell_<anonymous>/yIndex
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/cell_<anonymous>/yIndex'>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint/cell_<anonymous>.xIndex
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/cell_<anonymous>/xIndex
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/cell_<anonymous>/xIndex'>
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'abc.cell_<anonymous>'>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint.isValid
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/isValid
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/isValid'>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint.id
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/id
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/id'>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint.confidence
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/confidence
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/confidence'>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint.name
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/name
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/name'>
+DEBUG:python_jsonschema_objects.classbuilder:Handling property #/definitions/joint.position
+DEBUG:python_jsonschema_objects.classbuilder:Constructing #/definitions/joint/position_<anonymous_field>
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/position_<anonymous_field>'>
+DEBUG:python_jsonschema_objects.wrapper_types:Constructing ArrayValidator with <class 'python_jsonschema_objects.classbuilder.#/definitions/joint/position_<anonymous_field>'> and {'type': 'array', 'items': {'type': 'number'}, 'minItems': 2, 'raw_name': 'position', 'strict': False}
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Constructing posenet_pose
+DEBUG:python_jsonschema_objects.classbuilder:Building object posenet_pose
+DEBUG:python_jsonschema_objects.classbuilder:Handling property posenet_pose.joints
+DEBUG:python_jsonschema_objects.classbuilder:Constructing posenet_pose/joints_<anonymous_field>_0
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.wrapper_types:Constructing ArrayValidator with <python_jsonschema_objects.classbuilder.TypeProxy object at 0x000001BDB1C585E0> and {'type': 'array', 'items': {'oneOf': [{'type': 'integer'}, {'$ref': '#/definitions/joint'}]}, 'minItems': 34, 'maxItems': 34, 'uniqueItems': True, 'raw_name': 'joints', 'strict': False}
+DEBUG:python_jsonschema_objects.classbuilder:Handling property posenet_pose.confidence
+DEBUG:python_jsonschema_objects.classbuilder:Constructing posenet_pose/confidence
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'python_jsonschema_objects.classbuilder.posenet_pose/confidence'>
+DEBUG:python_jsonschema_objects.classbuilder:Constructed <class 'abc.posenet_pose'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'joints' to [14, {'cell': {'yIndex': 24, 'xIndex': 16}, 'isValid': True, 'id': '6B10540F-C05D-43FF-81A2-12B98B6E31F0', 'confidence': 0.6435546875, 'name': 14, 'position': [625.7699805068225, 541.5131578947368]}, 13, {'cell': {'yIndex': 18, 'xIndex': 14}, 'isValid': True, 'id': '', 'confidence': 0.41845703125, 'name': 13, 'position': [580.5068226120858, 416.11842105263156]}, 11, {'cell': {'yIndex': 16, 'xIndex': 16}, 'isValid': True, 'id': '85600A46-10E4-4784-A009-ECBF8B75309B', 'confidence': 0.86181640625, 'name': 11, 'position': [652.3976608187135, 366.2390350877193]}, 15, {'cell': {'yIndex': 23, 'xIndex': 15}, 'isValid': False, 'id': 'BB6137B0-93F1-4F1E-9CF9-94211F970D94', 'confidence': 0.007457733154296875, 'name': 15, 'position': [595.8382066276803, 527.4287280701755]}, 2, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'A99B6450-C93B-428F-BFA4-2EEC13D0861D', 'confidence': 0.2548828125, 'name': 2, 'position': [706.7348927875244, 238.36074561403507]}, 5, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': '7F2A9C1F-8CC1-42E0-BF31-F8A2B00844A1', 'confidence': 0.69970703125, 'name': 5, 'position': [682.3026315789473, 268.91618695175436]}, 4, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '4081BFB0-338A-444D-8D09-D00117DB350B', 'confidence': 0.349609375, 'name': 4, 'position': [714.412768031189, 227.8673245614035]}, 9, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': 'CC0D096E-F973-4CBB-B2DA-C920C97755D9', 'confidence': 0.873046875, 'name': 9, 'position': [681.479044834308, 238.4265350877193]}, 16, {'cell': {'yIndex': 30, 'xIndex': 15}, 'isValid': True, 'id': '02D40ABF-9BFB-4697-BA77-F5B348E961F1', 'confidence': 0.3759765625, 'name': 16, 'position': [595.0268031189083, 673.348752741228]}, 6, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'FDED2A84-0870-4999-8C2D-F4127E7A205B', 'confidence': 0.66455078125, 'name': 6, 'position': [655.7699805068225, 267.17105263157896]}, 3, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '776000BA-DA95-4E9C-9995-3F2B179828E2', 'confidence': 0.1031494140625, 'name': 3, 'position': [702.9727095516569, 225.53728070175438]}, 8, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'AEDF01A4-E1B4-47FA-944C-190EE1F9E4AD', 'confidence': 0.72802734375, 'name': 8, 'position': [627.6120857699805, 271.66666666666663]}, 1, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': '2F348E2E-70B1-4892-AC04-AD24FB52D364', 'confidence': 0.1278076171875, 'name': 1, 'position': [708.8450292397661, 236.43640350877192]}, 12, {'cell': {'yIndex': 16, 'xIndex': 15}, 'isValid': True, 'id': '5645F15C-0DB5-47A3-BF79-B8DDF8AE612E', 'confidence': 0.91650390625, 'name': 12, 'position': [612.7680311890838, 365.9758771929824]}, 10, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': '989609EB-504F-480F-B4D7-3126DA0B5FCF', 'confidence': 0.7099609375, 'name': 10, 'position': [660.9746588693956, 237.45065789473682]}, 0, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'CCE35382-8F71-4E57-8319-B5B72A459B10', 'confidence': 0.2335205078125, 'name': 0, 'position': [708.2163742690058, 242.2615131578947]}, 7, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': 'EC2D95DB-A62A-4747-A304-7F73167E128E', 'confidence': 0.70068359375, 'name': 7, 'position': [695.4580896686159, 273.57730263157896]}]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <posenet_pose/joints_<anonymous_field>=[14, {'cell': {'yIndex': 24, 'xIndex': 16}, 'isValid': True, 'id': '6B10540F-C05D-43FF-81A2-12B98B6E31F0', 'confidence': 0.6435546875, 'name': 14, 'position': [625.7699805068225, 541.5131578947368]}, 13, {'cell': {'yIndex': 18, 'xIndex': 14}, 'isValid': True, 'id': '', 'confidence': 0.41845703125, 'name': 13, 'position': [580.5068226120858, 416.11842105263156]}, 11, {'cell': {'yIndex': 16, 'xIndex': 16}, 'isValid': True, 'id': '85600A46-10E4-4784-A009-ECBF8B75309B', 'confidence': 0.86181640625, 'name': 11, 'position': [652.3976608187135, 366.2390350877193]}, 15, {'cell': {'yIndex': 23, 'xIndex': 15}, 'isValid': False, 'id': 'BB6137B0-93F1-4F1E-9CF9-94211F970D94', 'confidence': 0.007457733154296875, 'name': 15, 'position': [595.8382066276803, 527.4287280701755]}, 2, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'A99B6450-C93B-428F-BFA4-2EEC13D0861D', 'confidence': 0.2548828125, 'name': 2, 'position': [706.7348927875244, 238.36074561403507]}, 5, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': '7F2A9C1F-8CC1-42E0-BF31-F8A2B00844A1', 'confidence': 0.69970703125, 'name': 5, 'position': [682.3026315789473, 268.91618695175436]}, 4, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '4081BFB0-338A-444D-8D09-D00117DB350B', 'confidence': 0.349609375, 'name': 4, 'position': [714.412768031189, 227.8673245614035]}, 9, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': 'CC0D096E-F973-4CBB-B2DA-C920C97755D9', 'confidence': 0.873046875, 'name': 9, 'position': [681.479044834308, 238.4265350877193]}, 16, {'cell': {'yIndex': 30, 'xIndex': 15}, 'isValid': True, 'id': '02D40ABF-9BFB-4697-BA77-F5B348E961F1', 'confidence': 0.3759765625, 'name': 16, 'position': [595.0268031189083, 673.348752741228]}, 6, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'FDED2A84-0870-4999-8C2D-F4127E7A205B', 'confidence': 0.66455078125, 'name': 6, 'position': [655.7699805068225, 267.17105263157896]}, 3, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '776000BA-DA95-4E9C-9995-3F2B179828E2', 'confidence': 0.1031494140625, 'name': 3, 'position': [702.9727095516569, 225.53728070175438]}, 8, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'AEDF01A4-E1B4-47FA-944C-190EE1F9E4AD', 'confidence': 0.72802734375, 'name': 8, 'position': [627.6120857699805, 271.66666666666663]}, 1, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': '2F348E2E-70B1-4892-AC04-AD24FB52D364', 'confidence': 0.1278076171875, 'name': 1, 'position': [708.8450292397661, 236.43640350877192]}, 12, {'cell': {'yIndex': 16, 'xIndex': 15}, 'isValid': True, 'id': '5645F15C-0DB5-47A3-BF79-B8DDF8AE612E', 'confidence': 0.91650390625, 'name': 12, 'position': [612.7680311890838, 365.9758771929824]}, 10, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': '989609EB-504F-480F-B4D7-3126DA0B5FCF', 'confidence': 0.7099609375, 'name': 10, 'position': [660.9746588693956, 237.45065789473682]}, 0, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'CCE35382-8F71-4E57-8319-B5B72A459B10', 'confidence': 0.2335205078125, 'name': 0, 'position': [708.2163742690058, 242.2615131578947]}, 7, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': 'EC2D95DB-A62A-4747-A304-7F73167E128E', 'confidence': 0.70068359375, 'name': 7, 'position': [695.4580896686159, 273.57730263157896]}]> with [14, {'cell': {'yIndex': 24, 'xIndex': 16}, 'isValid': True, 'id': '6B10540F-C05D-43FF-81A2-12B98B6E31F0', 'confidence': 0.6435546875, 'name': 14, 'position': [625.7699805068225, 541.5131578947368]}, 13, {'cell': {'yIndex': 18, 'xIndex': 14}, 'isValid': True, 'id': '', 'confidence': 0.41845703125, 'name': 13, 'position': [580.5068226120858, 416.11842105263156]}, 11, {'cell': {'yIndex': 16, 'xIndex': 16}, 'isValid': True, 'id': '85600A46-10E4-4784-A009-ECBF8B75309B', 'confidence': 0.86181640625, 'name': 11, 'position': [652.3976608187135, 366.2390350877193]}, 15, {'cell': {'yIndex': 23, 'xIndex': 15}, 'isValid': False, 'id': 'BB6137B0-93F1-4F1E-9CF9-94211F970D94', 'confidence': 0.007457733154296875, 'name': 15, 'position': [595.8382066276803, 527.4287280701755]}, 2, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'A99B6450-C93B-428F-BFA4-2EEC13D0861D', 'confidence': 0.2548828125, 'name': 2, 'position': [706.7348927875244, 238.36074561403507]}, 5, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': '7F2A9C1F-8CC1-42E0-BF31-F8A2B00844A1', 'confidence': 0.69970703125, 'name': 5, 'position': [682.3026315789473, 268.91618695175436]}, 4, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '4081BFB0-338A-444D-8D09-D00117DB350B', 'confidence': 0.349609375, 'name': 4, 'position': [714.412768031189, 227.8673245614035]}, 9, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': 'CC0D096E-F973-4CBB-B2DA-C920C97755D9', 'confidence': 0.873046875, 'name': 9, 'position': [681.479044834308, 238.4265350877193]}, 16, {'cell': {'yIndex': 30, 'xIndex': 15}, 'isValid': True, 'id': '02D40ABF-9BFB-4697-BA77-F5B348E961F1', 'confidence': 0.3759765625, 'name': 16, 'position': [595.0268031189083, 673.348752741228]}, 6, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'FDED2A84-0870-4999-8C2D-F4127E7A205B', 'confidence': 0.66455078125, 'name': 6, 'position': [655.7699805068225, 267.17105263157896]}, 3, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '776000BA-DA95-4E9C-9995-3F2B179828E2', 'confidence': 0.1031494140625, 'name': 3, 'position': [702.9727095516569, 225.53728070175438]}, 8, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'AEDF01A4-E1B4-47FA-944C-190EE1F9E4AD', 'confidence': 0.72802734375, 'name': 8, 'position': [627.6120857699805, 271.66666666666663]}, 1, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': '2F348E2E-70B1-4892-AC04-AD24FB52D364', 'confidence': 0.1278076171875, 'name': 1, 'position': [708.8450292397661, 236.43640350877192]}, 12, {'cell': {'yIndex': 16, 'xIndex': 15}, 'isValid': True, 'id': '5645F15C-0DB5-47A3-BF79-B8DDF8AE612E', 'confidence': 0.91650390625, 'name': 12, 'position': [612.7680311890838, 365.9758771929824]}, 10, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': '989609EB-504F-480F-B4D7-3126DA0B5FCF', 'confidence': 0.7099609375, 'name': 10, 'position': [660.9746588693956, 237.45065789473682]}, 0, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'CCE35382-8F71-4E57-8319-B5B72A459B10', 'confidence': 0.2335205078125, 'name': 0, 'position': [708.2163742690058, 242.2615131578947]}, 7, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': 'EC2D95DB-A62A-4747-A304-7F73167E128E', 'confidence': 0.70068359375, 'name': 7, 'position': [695.4580896686159, 273.57730263157896]}]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <posenet_pose/joints_<anonymous_field>=[14, {'cell': {'yIndex': 24, 'xIndex': 16}, 'isValid': True, 'id': '6B10540F-C05D-43FF-81A2-12B98B6E31F0', 'confidence': 0.6435546875, 'name': 14, 'position': [625.7699805068225, 541.5131578947368]}, 13, {'cell': {'yIndex': 18, 'xIndex': 14}, 'isValid': True, 'id': '', 'confidence': 0.41845703125, 'name': 13, 'position': [580.5068226120858, 416.11842105263156]}, 11, {'cell': {'yIndex': 16, 'xIndex': 16}, 'isValid': True, 'id': '85600A46-10E4-4784-A009-ECBF8B75309B', 'confidence': 0.86181640625, 'name': 11, 'position': [652.3976608187135, 366.2390350877193]}, 15, {'cell': {'yIndex': 23, 'xIndex': 15}, 'isValid': False, 'id': 'BB6137B0-93F1-4F1E-9CF9-94211F970D94', 'confidence': 0.007457733154296875, 'name': 15, 'position': [595.8382066276803, 527.4287280701755]}, 2, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'A99B6450-C93B-428F-BFA4-2EEC13D0861D', 'confidence': 0.2548828125, 'name': 2, 'position': [706.7348927875244, 238.36074561403507]}, 5, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': '7F2A9C1F-8CC1-42E0-BF31-F8A2B00844A1', 'confidence': 0.69970703125, 'name': 5, 'position': [682.3026315789473, 268.91618695175436]}, 4, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '4081BFB0-338A-444D-8D09-D00117DB350B', 'confidence': 0.349609375, 'name': 4, 'position': [714.412768031189, 227.8673245614035]}, 9, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': 'CC0D096E-F973-4CBB-B2DA-C920C97755D9', 'confidence': 0.873046875, 'name': 9, 'position': [681.479044834308, 238.4265350877193]}, 16, {'cell': {'yIndex': 30, 'xIndex': 15}, 'isValid': True, 'id': '02D40ABF-9BFB-4697-BA77-F5B348E961F1', 'confidence': 0.3759765625, 'name': 16, 'position': [595.0268031189083, 673.348752741228]}, 6, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'FDED2A84-0870-4999-8C2D-F4127E7A205B', 'confidence': 0.66455078125, 'name': 6, 'position': [655.7699805068225, 267.17105263157896]}, 3, {'cell': {'yIndex': 10, 'xIndex': 18}, 'isValid': True, 'id': '776000BA-DA95-4E9C-9995-3F2B179828E2', 'confidence': 0.1031494140625, 'name': 3, 'position': [702.9727095516569, 225.53728070175438]}, 8, {'cell': {'yIndex': 12, 'xIndex': 16}, 'isValid': True, 'id': 'AEDF01A4-E1B4-47FA-944C-190EE1F9E4AD', 'confidence': 0.72802734375, 'name': 8, 'position': [627.6120857699805, 271.66666666666663]}, 1, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': '2F348E2E-70B1-4892-AC04-AD24FB52D364', 'confidence': 0.1278076171875, 'name': 1, 'position': [708.8450292397661, 236.43640350877192]}, 12, {'cell': {'yIndex': 16, 'xIndex': 15}, 'isValid': True, 'id': '5645F15C-0DB5-47A3-BF79-B8DDF8AE612E', 'confidence': 0.91650390625, 'name': 12, 'position': [612.7680311890838, 365.9758771929824]}, 10, {'cell': {'yIndex': 11, 'xIndex': 17}, 'isValid': True, 'id': '989609EB-504F-480F-B4D7-3126DA0B5FCF', 'confidence': 0.7099609375, 'name': 10, 'position': [660.9746588693956, 237.45065789473682]}, 0, {'cell': {'yIndex': 11, 'xIndex': 18}, 'isValid': True, 'id': 'CCE35382-8F71-4E57-8319-B5B72A459B10', 'confidence': 0.2335205078125, 'name': 0, 'position': [708.2163742690058, 242.2615131578947]}, 7, {'cell': {'yIndex': 12, 'xIndex': 17}, 'isValid': True, 'id': 'EC2D95DB-A62A-4747-A304-7F73167E128E', 'confidence': 0.70068359375, 'name': 7, 'position': [695.4580896686159, 273.57730263157896]}]>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 24, 'xIndex': 16}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 24
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 6B10540F-C05D-43FF-81A2-12B98B6E31F0
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.6435546875
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 14
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [625.7699805068225, 541.5131578947368]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]> with [625.7699805068225, 541.5131578947368]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>> with <#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[625.7699805068225, 541.5131578947368]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 18, 'xIndex': 14}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 18
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 14
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.41845703125
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 13
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [580.5068226120858, 416.11842105263156]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]> with [580.5068226120858, 416.11842105263156]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>> with <#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[580.5068226120858, 416.11842105263156]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 16, 'xIndex': 16}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 85600A46-10E4-4784-A009-ECBF8B75309B
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.86181640625
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 11
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [652.3976608187135, 366.2390350877193]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]> with [652.3976608187135, 366.2390350877193]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>> with <#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[652.3976608187135, 366.2390350877193]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 23, 'xIndex': 15}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 23
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 15
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to False
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to BB6137B0-93F1-4F1E-9CF9-94211F970D94
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.007457733154296875
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 15
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [595.8382066276803, 527.4287280701755]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]> with [595.8382066276803, 527.4287280701755]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>> with <#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.8382066276803, 527.4287280701755]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 11, 'xIndex': 18}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 11
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 18
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to A99B6450-C93B-428F-BFA4-2EEC13D0861D
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.2548828125
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 2
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [706.7348927875244, 238.36074561403507]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]> with [706.7348927875244, 238.36074561403507]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>> with <#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[706.7348927875244, 238.36074561403507]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 12, 'xIndex': 17}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 12
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 17
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 7F2A9C1F-8CC1-42E0-BF31-F8A2B00844A1
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.69970703125
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 5
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [682.3026315789473, 268.91618695175436]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]> with [682.3026315789473, 268.91618695175436]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>> with <#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[682.3026315789473, 268.91618695175436]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 10, 'xIndex': 18}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 10
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 18
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 4081BFB0-338A-444D-8D09-D00117DB350B
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.349609375
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 4
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [714.412768031189, 227.8673245614035]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]> with [714.412768031189, 227.8673245614035]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>> with <#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[714.412768031189, 227.8673245614035]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 11, 'xIndex': 17}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 11
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 17
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to CC0D096E-F973-4CBB-B2DA-C920C97755D9
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.873046875
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 9
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [681.479044834308, 238.4265350877193]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]> with [681.479044834308, 238.4265350877193]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>> with <#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[681.479044834308, 238.4265350877193]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 30, 'xIndex': 15}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 30
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 15
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 02D40ABF-9BFB-4697-BA77-F5B348E961F1
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.3759765625
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [595.0268031189083, 673.348752741228]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]> with [595.0268031189083, 673.348752741228]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>> with <#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[595.0268031189083, 673.348752741228]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 12, 'xIndex': 16}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 12
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to FDED2A84-0870-4999-8C2D-F4127E7A205B
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.66455078125
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 6
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [655.7699805068225, 267.17105263157896]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]> with [655.7699805068225, 267.17105263157896]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>> with <#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[655.7699805068225, 267.17105263157896]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 10, 'xIndex': 18}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 10
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 18
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 776000BA-DA95-4E9C-9995-3F2B179828E2
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.1031494140625
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 3
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [702.9727095516569, 225.53728070175438]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]> with [702.9727095516569, 225.53728070175438]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>> with <#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[702.9727095516569, 225.53728070175438]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 12, 'xIndex': 16}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 12
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to AEDF01A4-E1B4-47FA-944C-190EE1F9E4AD
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.72802734375
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 8
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [627.6120857699805, 271.66666666666663]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]> with [627.6120857699805, 271.66666666666663]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>> with <#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[627.6120857699805, 271.66666666666663]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 11, 'xIndex': 18}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 11
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 18
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 2F348E2E-70B1-4892-AC04-AD24FB52D364
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.1278076171875
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 1
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [708.8450292397661, 236.43640350877192]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]> with [708.8450292397661, 236.43640350877192]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>> with <#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.8450292397661, 236.43640350877192]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 16, 'xIndex': 15}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 16
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 15
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 5645F15C-0DB5-47A3-BF79-B8DDF8AE612E
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.91650390625
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 12
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [612.7680311890838, 365.9758771929824]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]> with [612.7680311890838, 365.9758771929824]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>> with <#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[612.7680311890838, 365.9758771929824]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 11, 'xIndex': 17}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 11
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 17
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to 989609EB-504F-480F-B4D7-3126DA0B5FCF
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.7099609375
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 10
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [660.9746588693956, 237.45065789473682]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]> with [660.9746588693956, 237.45065789473682]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>> with <#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[660.9746588693956, 237.45065789473682]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 11, 'xIndex': 18}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 11
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 18
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to CCE35382-8F71-4E57-8319-B5B72A459B10
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.2335205078125
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 0
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [708.2163742690058, 242.2615131578947]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]> with [708.2163742690058, 242.2615131578947]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>> with <#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[708.2163742690058, 242.2615131578947]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'python_jsonschema_objects.classbuilder.posenet_pose/joints_<anonymous_field>_0'>
+DEBUG:python_jsonschema_objects.classbuilder:Attempting to instantiate <class 'python_jsonschema_objects.classbuilder.TypeProxy'> as <class 'abc.joint'>
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'cell' to {'yIndex': 12, 'xIndex': 17}
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'yIndex' to 12
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'xIndex' to 17
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'isValid' to True
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'id' to EC2D95DB-A62A-4747-A304-7F73167E128E
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.70068359375
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'name' to 7
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'position' to [695.4580896686159, 273.57730263157896]
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]> with [695.4580896686159, 273.57730263157896]
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>> with <#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]> 
+DEBUG:python_jsonschema_objects.wrapper_types:Initializing ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>>> with <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>>
+DEBUG:python_jsonschema_objects.wrapper_types:Validating <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>>>
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>> 
+DEBUG:python_jsonschema_objects.wrapper_types:Accessing typed_elems of ArrayWrapper <#/definitions/joint/position_<anonymous_field>=<#/definitions/joint/position_<anonymous_field>=[695.4580896686159, 273.57730263157896]>> 
+DEBUG:python_jsonschema_objects.classbuilder:Setting value for 'confidence' to 0.5094855813419118
